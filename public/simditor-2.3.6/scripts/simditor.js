@@ -2359,7 +2359,7 @@ Clipboard = (function(superClass) {
         children = pasteContent.contents();
         if (children.length === 1 && children.is('img')) {
           $img = children;
-          if (/^data:image/.test($img.attr('src'))) {
+          if (/^data:/image/.test($img.attr('src'))) {
             if (!this.opts.pasteImage) {
               return;
             }
@@ -2453,7 +2453,7 @@ Simditor = (function(superClass) {
   Simditor.prototype.opts = {
     textarea: null,
     placeholder: '',
-    defaultImage: 'images/image.png',
+    defaultImage: '/images/image.png',
     params: {},
     upload: false,
     indentWidth: 40
@@ -4336,7 +4336,7 @@ ImageButton = (function(superClass) {
           type: 'file',
           title: _this._t('uploadImage'),
           multiple: true,
-          accept: 'image/*'
+          accept: '/image/*'
         }).appendTo($uploadItem);
       };
     })(this);
@@ -4732,7 +4732,7 @@ ImagePopover = (function(superClass) {
           type: 'file',
           title: _this._t('uploadImage'),
           multiple: true,
-          accept: 'image/*'
+          accept: '/image/*'
         }).appendTo($uploadBtn);
       };
     })(this);
@@ -4791,7 +4791,7 @@ ImagePopover = (function(superClass) {
   };
 
   ImagePopover.prototype._loadImage = function(src, callback) {
-    if (/^data:image/.test(src) && !this.editor.uploader) {
+    if (/^data:/image/.test(src) && !this.editor.uploader) {
       if (callback) {
         callback(false);
       }
@@ -4812,7 +4812,7 @@ ImagePopover = (function(superClass) {
           _this.widthEl.val(_this.width);
           _this.heightEl.val(_this.height);
         }
-        if (/^data:image/.test(src)) {
+        if (/^data:/image/.test(src)) {
           blob = _this.editor.util.dataURLtoBlob(src);
           blob.name = "Base64 Image.png";
           _this.editor.uploader.upload(blob, {

@@ -217,7 +217,7 @@ Uploader = (function(superClass) {
     img.onerror = function() {
       return callback();
     };
-    if (window.FileReader && FileReader.prototype.readAsDataURL && /^image/.test(fileObj.type)) {
+    if (window.FileReader && FileReader.prototype.readAsDataURL && /^/image/.test(fileObj.type)) {
       fileReader = new FileReader();
       fileReader.onload = function(e) {
         return img.src = e.target.result;

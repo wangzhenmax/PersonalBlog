@@ -10,12 +10,12 @@
 	/*.mainot .menu{margin-left:5px;}*/
 	.menu{color:#5A5A5A;text-align:left;margin-bottom:10px;}/*当前位置*/
 
-	.mainbt{font-size:14px;line-height:30px;font-weight:bold;color:#fff;height:30px;padding:0 0 0 25px; background:#808080 url(../images/base.gif) no-repeat 15px -842px;}/*灰底白字前面有个白标的标题*/
+	.mainbt{font-size:14px;line-height:30px;font-weight:bold;color:#fff;height:30px;padding:0 0 0 25px; background:#808080 url(..//images/base.gif) no-repeat 15px -842px;}/*灰底白字前面有个白标的标题*/
 		.mainbt .floatr a{font-size:12px;font-weight:normal;color:#fff;text-decoration:underline;margin-right:10px;}
 		
 	.logregmain{padding:25px 0 0 0;}
 	
-	.logm,.regm,.regall,.userright{color:#000;background:url(../images/botbggray.jpg) no-repeat center bottom;border:1px solid #c8c8c8;}
+	.logm,.regm,.regall,.userright{color:#000;background:url(..//images/botbggray.jpg) no-repeat center bottom;border:1px solid #c8c8c8;}
 	.logregmain a,.shopend a{color:#666;text-decoration:underline;}
 	.logregmain a:hover,.shopend a:hover{color:#990005;}
 	.logreg_dl{text-align:center;margin-top:20px;}/*按钮距离*/
@@ -39,7 +39,7 @@
 	.tfmain_m .logreg_r p{margin-top:0;}
 	
 
-	.buttonred1,.buttonred2{font-weight:bold;line-height:20px;color:#fff;text-align:center;background:url(../images/base.gif) no-repeat 0 -205px;width:105px;height:20px;border:0;}/*红背景按钮－大*/
+	.buttonred1,.buttonred2{font-weight:bold;line-height:20px;color:#fff;text-align:center;background:url(..//images/base.gif) no-repeat 0 -205px;width:105px;height:20px;border:0;}/*红背景按钮－大*/
 	
 /*我的帐户*/
 .user{padding:0 0 30px 0;}
@@ -47,17 +47,17 @@
 .user .shop{margin-top:0;}
 .usernav{float:left;width:200px;padding-bottom:10px;border:1px solid #c8c8c8;}
 .usermain{float:right;width:780px;}
-.usernav dt{font-size:14px;font-weight:bold;line-height:25px;color:#fff;background:url(../images/bgx.jpg) repeat-x 0 -25px;height:25px;padding-left:7px;}
-.usernav dt span{background:url(../images/base.gif) no-repeat 0 4px;margin-right:5px;}
+.usernav dt{font-size:14px;font-weight:bold;line-height:25px;color:#fff;background:url(..//images/bgx.jpg) repeat-x 0 -25px;height:25px;padding-left:7px;}
+.usernav dt span{background:url(..//images/base.gif) no-repeat 0 4px;margin-right:5px;}
 .usernav dd{margin:12px 0 13px 11px;}
-.usernav dd a{line-height:24px;color:#464646;background:#f3f3f3 url(../images/picb2.gif) no-repeat 15px -23px;display:block;width:151px;*width:175px;height:24px;padding-left:24px;}
-.usernav dd a:hover{background:#E4E4E4 url(../images/picb2.gif) no-repeat 15px -23px;}
-.usernav .ddor a{color:#C31400;background:#F8F1DC url(../images/picb2.gif) no-repeat 15px -7px;}
-.usernav .ddor a:hover{background:#F9E4C6 url(../images/picb2.gif) no-repeat 15px -7px;}
-.info_tips{color:#666;background:url(../images/picb2.gif) no-repeat 0px -50px;text-align:left;margin:5px 0 20px 140px;padding-left:20px;}
+.usernav dd a{line-height:24px;color:#464646;background:#f3f3f3 url(..//images/picb2.gif) no-repeat 15px -23px;display:block;width:151px;*width:175px;height:24px;padding-left:24px;}
+.usernav dd a:hover{background:#E4E4E4 url(..//images/picb2.gif) no-repeat 15px -23px;}
+.usernav .ddor a{color:#C31400;background:#F8F1DC url(..//images/picb2.gif) no-repeat 15px -7px;}
+.usernav .ddor a:hover{background:#F9E4C6 url(..//images/picb2.gif) no-repeat 15px -7px;}
+.info_tips{color:#666;background:url(..//images/picb2.gif) no-repeat 0px -50px;text-align:left;margin:5px 0 20px 140px;padding-left:20px;}
 .tfmain{width:735px;margin:25px 20px 0 20px;overflow:hidden;}
 .tfmain_m{text-align:left;margin:20px 0 30px 0;}
-.tfmain_mdiv{background:#f3f3f3 url(../images/picb2.gif) no-repeat -207px -74px;margin-bottom:20px;}
+.tfmain_mdiv{background:#f3f3f3 url(..//images/picb2.gif) no-repeat -207px -74px;margin-bottom:20px;}
 .tfmain_mdivnum{font-size:14px;font-weight:bold;color:#fff;text-align:left;padding:6px 0 0 8px;}
 .tfmain_mdivm{text-align:left;margin:0 0 0 90px;}/*user/order 收货地址簿*/
 .tfmain_mdivm p{float:left;color:#464646;width:290px;margin:10px 25px 0 0;}
@@ -124,11 +124,11 @@
 .shop_nu{line-height:20px;}
 .input_num{width:30px;text-align:center;margin-top:20px;border:1px solid #c8c8c8;}
 .shop_bot{text-align:right;margin:10px 20px 0 0;}
-.button_shop{color:#C31400;background:url(../images/picb2.gif) no-repeat -111px -203px;width:75px !important; width:69px; height:25px;vertical-align:middle;margin-right:20px;border:0;vertical-align:middle;}
+.button_shop{color:#C31400;background:url(..//images/picb2.gif) no-repeat -111px -203px;width:75px !important; width:69px; height:25px;vertical-align:middle;margin-right:20px;border:0;vertical-align:middle;}
 .button_shopent{line-height:18px;height:20px;border:1px solid #464646;}
 .shoporder{width:770px;text-align:center;margin:10px auto;}/*结算*/
 .shoporder_bt{font-weight:bold;text-align:left;color:#000;}
-.buttonred1,.buttonred2{font-weight:bold;line-height:20px;color:#fff;text-align:center;background:url(../images/picb2.gif) no-repeat 0 -205px;width:105px;height:20px;border:0;}/*红背景按钮－大*/
+.buttonred1,.buttonred2{font-weight:bold;line-height:20px;color:#fff;text-align:center;background:url(..//images/picb2.gif) no-repeat 0 -205px;width:105px;height:20px;border:0;}/*红背景按钮－大*/
 .buttonred2{float:right;font-weight:normal;background-position:0 -235px;width:180px;}/*红背景按钮－超大*/
 .shoporder_mdiv{background:#f3f3f3;*height:10px;margin-bottom:20px;padding-top:10px;}/*原transferway*/
 .shoporder dl{line-height:25px;padding:10px 0 10px 0;}
@@ -151,7 +151,7 @@
 .shoporder_fpbz .input{width:210px;}
 .shoporder_enter{line-height:30px;color:#808080;margin-top:30px;}
 .shopend{width:675px;text-align:center;margin:10px auto;}/*下单成功*/
-.shopendsuc{font-weight:bold;color:#000;background:url(../images/picb2.gif) no-repeat 30px -300px;width:400px;*width:500px;margin:40px auto;padding-left:100px;}
+.shopendsuc{font-weight:bold;color:#000;background:url(..//images/picb2.gif) no-repeat 30px -300px;width:400px;*width:500px;margin:40px auto;padding-left:100px;}
 .shopendsuc h1{font-size:16px;line-height:30px;color:#c31400;text-align:left;margin:0;}
 .shopendsuc h2{font-size:12px;text-align:left;margin:0;}
 .shopend_bg{font-size:14px;line-height:35px;color:#333;background:#eee;text-align:left;margin-bottom:20px;padding:30px 0 30px 120px;}

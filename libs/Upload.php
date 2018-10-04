@@ -13,7 +13,7 @@ class Upload
     }
 
     private $_root = ROOT."public/upload/";
-    private $_ext = ['image/jpeg','image/jpg','image/ejpeg','image/png','image/gif','image/bmp'];
+    private $_ext = ['/image/jpeg','/image/jpg','/image/ejpeg','/image/png','/image/gif','/image/bmp'];
     private $_maxSize = 1024*1024*2;
     private $_file;
     private $_subDir;
