@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>管理中心 - 数据列表 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Styles/general.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h1>
+        <span class="action-span">
+            <a href="/blog/create">添加新记录</a>
+        </span>
+        <span class="action-span1">
+            <a href="/admin/index">管理中心</a>
+        </span>
+        <span id="search_id" class="action-span1"> - 数据列表 </span>
+        <div style="clear:both"></div>
+    </h1>
+
+    <div class="list-div" id="listDiv">
+        <form>
+            <div>
+                关键字：
+                <input type="text" name="keyword" value="<?=@$_GET['keyword']?>"> 发表日期：
+                <input type="text" name="start_date" value="<?=@$_GET['start_date']?>"> ~
+                <input type="text" name="end_date" value="<?=@$_GET['end_date']?>"> 是否显示：
+                <input type="radio" name="is_show" value="" <?php if(@$_GET[ 'is_show']!='1' && @$_GET[ 'is_show']!=='0' ) echo 'checked';
+                    ?> > 全部
+                <input type="radio" name="is_show" value="1" <?php if(@$_GET[ 'is_show']=='1' ) echo 'checked'; ?> > 显示
+                <input type="radio" name="is_show" value="0" <?php if(@$_GET[ 'is_show']=='0' ) echo 'checked'; ?> > 不显示
+                <input type="submit" value="搜索">
+            </div>
+        </form>
+        <table cellpadding="3" cellspacing="1">
+
+            <tr>
+                <th>
+                </th>
+                <th>
+                    标题 </th>
+                <th>
+                    类型 </th>
+                <th>浏览量
+                    <a href="?<?=getUrlParams(['odby','odway'])?>odby=look&odway=asc">☝︎</a>
+                    <a href="?<?=getUrlParams(['odby','odway'])?>odby=look&odway=desc">☟</a>
+                </th>
+                <th>
+                    喜欢 </th>
+                <th>
+                    简介 </th>
+                <th>
+                    内容 </th>
+                <th>
+                    创建时间
+                    <a href="?<?=getUrlParams(['odby','odway'])?>odby=data&odway=asc">☝︎</a>
+                    <a href="?<?=getUrlParams(['odby','odway'])?>odby=data&odway=desc">☟</a>
+                </th>
+                <th>
+                </th>
+                <th>操作</th>
+            </tr>
+            <?php foreach($data as $v): ?>
+            <tr>
+                <td>
+                    <?=$v['id']?>
+                </td>
+                <td>
+                    <?=$v['title']?>
+                </td>
+                <td>
+                    <?=$v['type']?>
+                </td>
+                <td>
+                    <?=$v['look']?>
+                </td>
+                <td>
+                    <?=$v['like']?>
+                </td>
+                <td>
+                    <?=$v['introduce']?>
+                </td>
+                <td>
+                    <?=$v['content']?>
+                </td>
+                <td>
+                    <?=$v['created_at']?>
+                </td>
+                <td>
+                    <a href="/blog/edit?id=<?=$v['id']?>">修改</a>
+                    <a onclick="return confirm('确定要删除吗？');" href="/blog/delete?id=<?=$v['id']?>">删除</a>
+                </td>
+            </tr>
+            <?php endforeach; ?> </table>
+
+        <!-- 分页开始 -->
+        <table id="page-table" cellspacing="0">
+            <tr>
+                <td width="80%">&nbsp;</td>
+                <td align="center" nowrap="true">
+                    <?=$btns?>
+                </td>
+            </tr>
+        </table>
+        <!-- 分页结束 -->
+    </div>
+
+    <?=view('comment/footer')?>
+</body>
+
+</html>

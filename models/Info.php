@@ -1,7 +1,7 @@
 <?php
 namespace models;
 
-class Info extends Model
+class Info extends Base
 {
     // 设置这个模型对应的表
     protected $table = 'info';

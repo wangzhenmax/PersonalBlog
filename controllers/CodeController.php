@@ -9,26 +9,24 @@ class CodeController
         // 1. 接收参数（生成代码的表名）
         $tableName = $_GET['name'];
 
-        // // 取出这个表中所有的字段信息
-        // $sql = "SHOW FULL FIELDS FROM $tableName";
-        // $db = \libs\Db::getDb();
-        // // 预处理
-        // $stmt = $db->prepare($sql);
-        // // 执行 SQL
-        // $stmt->execute();
-        // // 取出数据
-        // $fields = $stmt->fetchAll( \PDO::FETCH_ASSOC );
-
-        // // 收集所有字段的白名单
-        // $fillable = [];
-        // foreach($fields as $v)
-        // {
-        //     if($v['Field'] == 'id' || $v['Field'] == 'created_at')
-        //         continue ;
-        //     $fillable[] = $v['Field'];
-        // }
-        // $fillable = implode("','", $fillable);
-
+        // 取出这个表中所有的字段信息
+        $sql = "SHOW FULL FIELDS FROM $tableName";
+        $db = \libs\Db::getDb();
+        // 预处理
+        $stmt = $db->prepare($sql);
+        // 执行 SQL
+        $stmt->execute();
+        // 取出数据
+        $fields = $stmt->fetchAll( \PDO::FETCH_ASSOC );
+                // 收集所有字段的白名单
+        $fillable = [];
+        foreach($fields as $v)
+        {
+            if($v['Field'] == 'id' || $v['Field'] == 'created_at')
+                continue ;
+            $fillable[] = $v['Field'];
+        }
+        $fillable = implode("','", $fillable);
         $mname = ucfirst($tableName);
 
         // 2. 生成控制器
@@ -52,6 +50,29 @@ class CodeController
         // 4. 生成视图文件
         // 生成视图目录
         @mkdir(ROOT . 'views/'.$tableName, 0777);
+
+        // echo '<pre>';
+        // var_dump( $fields );
+
+        // exit;
+
+        // create.html
+        ob_start();
+        include(ROOT . 'temp/create.html');
+        $str = ob_get_clean();
+        file_put_contents(ROOT.'views/'.$tableName.'/create.html', $str);
+
+        // edit.html
+        ob_start();
+        include(ROOT . 'temp/edit.html');
+        $str = ob_get_clean();
+        file_put_contents(ROOT.'views/'.$tableName.'/edit.html', $str);
+
+        // index.html
+        ob_start();
+        include(ROOT . 'temp/index.html');
+        $str = ob_get_clean();
+        file_put_contents(ROOT.'views/'.$tableName.'/index.html', $str);
 
     }
 }

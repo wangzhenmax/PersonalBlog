@@ -1,6 +1,6 @@
 namespace models;
 
-class <?=$mname?> extends Model
+class <?=$mname?> extends Base
 {
     // 设置这个模型对应的表
     protected $table = '<?=$tableName?>';

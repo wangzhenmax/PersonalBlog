@@ -5,11 +5,10 @@ class Predis{
     private function __clone(){}
     private function __construct(){}
     static function getinterface(){
-        $config=config("redis");
         self::$redis = new \Predis\Client([
-            'scheme' => $config['scheme'],
-            'host'   => $config['host'],
-            'port'   => $config['port'],
+            'scheme' => 'tcp',
+            'host'   => '127.0.0.1',
+            'port'   => 6379,
         ]);
         return self::$redis;
     }

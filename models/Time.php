@@ -1,7 +1,7 @@
 <?php
 namespace models;
 
-class Time extends Model
+class Time extends Base
 {
     // 设置这个模型对应的表
     protected $table = 'time';

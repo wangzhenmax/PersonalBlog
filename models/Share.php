@@ -1,7 +1,7 @@
 <?php
 namespace models;
 
-class Share extends Model
+class Share extends Base
 {
     // 设置这个模型对应的表
     protected $table = 'share';

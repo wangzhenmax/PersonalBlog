@@ -14,7 +14,7 @@ define('ROOT', dirname(__FILE__) . '/../');
 //     if(!isset($_POST['token']) || $_POST['token'] != $_SESSION['token'])
 //         die('违法操作！');
 // }
-
+require(ROOT.'vendor/autoload.php');
 // 实现类的自动加载
 function autoload($class)
 {
