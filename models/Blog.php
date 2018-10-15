@@ -7,6 +7,12 @@ class Blog extends Base
     protected $table = 'blog';
     // 设置允许接收的字段
     protected $fillable = ['title','type','introduce','content',"user_id"];
+    public function getType(){
+        $stmt  = $this->_db->prepare("SELECT * from type");
+        $stmt->execute();
+        $type  = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $type;
+    }
     public function add(){
         $id= $_SESSION['id'];
         $data = [
@@ -16,14 +22,28 @@ class Blog extends Base
             ":content"=>$_POST["content"],
             ":user_id"=>$id   
         ];
-        $sql = "INSERT INTO blog SET title = :title,type = :type,introduce = :introduce,content = :content,user_id = :user_id";
+        $sql = "INSERT INTO blog SET title = :title,type_id = :type,introduce = :introduce,content = :content,user_id = :user_id";
+        $stmt = $this->_db->prepare($sql);
+        return $data = $stmt->execute($data);
+        if($data){
+            return $data;
+        }else{
+            return $data;
+        }
+    }
+
+    public function update(){
+        $id = $_GET['id'];
+        $data = [
+            ":title"=>$_POST["title"],
+            ":type"=>$_POST['type'],
+            ':introduce'=>$_POST['introduce'],
+            ':content'=>$_POST['content'],
+            ':user_id'=>$id   
+        ];
+    $sql = "UPDATE blog SET title = '{$_POST['title']}',type_id = {$_POST['type']},introduce = '{$_POST['introduce']}',content = '{$_POST['content']}'  where id = {$_GET['id']}";
         $stmt = $this->_db->prepare($sql);
         $data = $stmt->execute($data);
-        if($data){
-            return true;
-        }else{
-            return false;
-        }
     }
     public function search()
     {
@@ -61,16 +81,16 @@ class Blog extends Base
         /***************** 排序 ********************/
         // // 默认排序
         $odby = 'created_at';
-        $odway = 'asc';
+        $odway = 'desc';
 
         if(isset($_GET['odby']) && $_GET['odby'] == 'look')
         {
             $odby = 'look';
         }
 
-        if(isset($_GET['odway']) && $_GET['odway'] == 'desc')
+        if(isset($_GET['odway']) && $_GET['odway'] == 'asc')
         {
-            $odway = 'desc';
+            $odway = 'asc';
         }
 
         /****************** 翻页 ****************/
@@ -103,7 +123,8 @@ class Blog extends Base
 
         /*************** 执行 sqL */
         // 预处理 SQL
-        $sql = "SELECT * FROM blog WHERE $where ORDER BY $odby $odway LIMIT $offset,$perpage";
+        $leftJoin = "  left join type  on blog.type_id=type.id  ";
+        $sql = "SELECT blog.* , type.name  FROM blog $leftJoin  WHERE $where ORDER BY $odby $odway LIMIT $offset,$perpage";
         $stmt = $this->_db->prepare($sql);
         // 执行 SQL
         $stmt->execute($value);

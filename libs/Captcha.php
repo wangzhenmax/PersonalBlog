@@ -47,7 +47,6 @@ class Captcha{
         $backColor = imagecolorallocate($img,mt_rand(0,150),mt_rand(0,150),mt_rand(0,150));
         //4、填充背景
         imagefill($img, 0, 0, $backColor);
-        
         //6、绘制文字内容到画布上
         $fontWidth = imagefontwidth($font);
         $fontHeight = imagefontheight($font);
@@ -55,6 +54,7 @@ class Captcha{
         $strWidth = $fontWidth * strlen($str);
         //计算空白,并且四舍五入
         $space =  round($imgWidth/($n+1));
+        $dir =  dirname(__FILE__)."/../public/fonts/arial.ttf";
         for($i=1;$i<=$n;$i++){
             $x = $i*$space;
             $y = mt_rand($font,$imgHeight-$fontHeight);
@@ -63,7 +63,7 @@ class Captcha{
             //绘制字符串
             // imagestring($img, $font, $x, $y, $str[$i-1], $fontColor);
             // imagettftext(画布, 字体大小(像素), 角度, 开始的x, 开始y, 颜色, "字体文件", 字符串)
-            imagettftext($img, $font, mt_rand(-30,60), $x+$xx, $y+$yy, $fontColor, "font/arial.ttf", $str[$i-1]);
+            imagettftext($img, $font, mt_rand(-30,60), $x+$xx, $y+$yy, $fontColor, $dir, $str[$i-1]);
         }
 
         //7、绘制一些随机的线条
@@ -118,7 +118,7 @@ class Captcha{
         $code = implode($str, "");
         //把中文的字符串保存到session中
         $_SESSION['validateCode'] = $code;
-
+        $dir =  dirname(__FILE__)."/../public/fonts/msyh.ttc";
         //2、创建画布
         $img = imagecreatetruecolor($imgWidth,$imgHeight);
         //3、创建背景颜色
@@ -141,7 +141,7 @@ class Captcha{
             //绘制字符串
             // imagestring($img, $font, $x, $y, $str[$i-1], $fontColor);
             // imagettftext(画布, 字体大小(像素), 角度, 开始的x, 开始y, 颜色, "字体文件", 字符串)
-            imagettftext($img, $font, mt_rand(-30,60), $x, $y+5, $fontColor, "font/msyh.ttc", $str[$i-1]);
+            imagettftext($img, $font, mt_rand(-30,60), $x, $y+5, $fontColor,$dir, $str[$i-1]);
         }
 
         //7、绘制一些随机的线条

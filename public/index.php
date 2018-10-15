@@ -8,6 +8,7 @@ session_start();
 // 定义常量
 define('ROOT', dirname(__FILE__) . '/../');
 
+
 // 引入 composer 自动加载文件
 // if($_SERVER['REQUEST_METHOD'] == 'POST')
 // {
@@ -52,8 +53,10 @@ else
 }
 
 
+
 // 为控制器添加命名空间
 $fullController = 'controllers\\'.$controller;
+
 
 $_C = new $fullController;
 $_C->$action();

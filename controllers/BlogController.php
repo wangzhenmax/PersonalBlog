@@ -19,7 +19,11 @@ class BlogController{
     // 显示添加的表单
     public function create()
     {
-        view('blog/create');
+        $model = new Blog;
+        $type = $model->getType();
+        view('blog/create',[
+            'type'=>$type
+        ]);
     }
 
     // 处理添加表单
@@ -40,16 +44,18 @@ class BlogController{
     {
         $model = new Blog;
         $data=$model->findOne($_GET['id']);
+        $type = $model->getType();
         view('blog/edit', [
             'data' => $data,    
+            'type' =>$type
         ]);
     }
 
     // 修改表单的方法
     public function update()
     {
+        
         $model = new Blog;
-        $model->fill($_POST);
         $model->update($_GET['id']);
         redirect('/blog/index');
     }

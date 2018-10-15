@@ -38,66 +38,6 @@ use PDO;
     protected function _after_write(){}
     protected function _before_delete(){}
     protected function _after_delete(){}
-
-    public function insert()
-    {
-        $this->_before_write();
-        $keys=[];
-        $values=[];
-        $token=[];
-        foreach($this->data as $k => $v)
-        {
-            $keys[] = $k;
-            $values[] = $v;
-            $token[] = '?';
-        }
-        $keys = implode(',', $keys);
-        $token = implode(',', $token);   // ?,?,?,?
-        $sql = "INSERT INTO {$this->table}($keys) VALUES($token)";
-        $stmt = $this->_db->prepare($sql);
-        $stmt->execute($values);
-        $this->data['id'] = $this->_db->lastInsertId();
-        $this->_after_write();
-    }
-
-     // 接收表单中的数据
-    public function fill($data)
-    {
-        // 判断是否在白名单中
-        foreach($data as $k => $v)
-        {
-            if(!in_array($k, $this->fillable))
-            {
-                unset($data[$k]);
-            }
-        }
-        $this->data = $data;
-    }
-
-    public function update($id)
-    {
-        $this->_before_write();
-
-        $set = [];
-        $token = [];
-
-        foreach($this->data as $k => $v)
-        {
-            $set[] = "$k=?";
-            $values[] = $v;
-            $token[] = '?';
-        }
-
-        $set = implode(',', $set);
-
-        $values[] = $id;
-        $sql = "UPDATE {$this->table} SET $set WHERE id=?";
-
-        $stmt = $this->_db->prepare($sql);
-        $stmt->execute($values);
-        $this->_after_write();
-    }
-
     public function delete($id)
     {
         $this->_before_delete();

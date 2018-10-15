@@ -23,7 +23,6 @@
     <div class="main-div">
         <form action="/blog/update?id=<?=$data['id']?>" method="post" enctype="multipart/form-data">
             <table width="100%" id="general-table">
-              
                 <tr>
                     <td class="label">
                         标题:</td>
@@ -36,8 +35,20 @@
                     <td class="label">
                         类型:</td>
                     <td>
-                        <input type='text' size="80" name='type' value="<?=$data['type']?>">
-                        <font color="red">*</font>
+                        <select name="type" id="">
+                            <option value="">请选择分类</option>
+                            <?php foreach($type as $k=>$v):?>
+                            <?php if($k+1==$data['type_id']):?>
+                                <option selected value="<?=$v['id']?>">
+                                    <?=$v['name']?> 
+                                </option>
+                            <?php else :?>
+                                <option value="<?=$v['id']?>">
+                                    <?=$v['name']?>
+                                </option>
+                            <?php endif?>
+                            <?php endforeach;?>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -51,10 +62,25 @@
                 <tr>
                     <td class="label">
                         内容:</td>
-                    <td>
-                        <textarea name="content" id="" cols="80" rows="10"><?=$data['content']?>
-                        </textarea>
-                        <font color="red">*</font>
+                    <td style="width:1100px">
+                        <!-- -- 加载UEEdtior编辑器的容器 -->
+                        
+                        
+                        <script id="container" name="content" type="text/plain"><?=$data['content']?></script>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="/js/utf8-php/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="/js/utf8-php/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container', {
+                                //initialFrameWidth : 600,
+                                initialFrameHeight: 400
+                            });
+                        </script>
+                        
+                        
+                        <!-- 加载UEEdtior编辑器的容器结束 -->
                     </td>
                 </tr>
             </table>

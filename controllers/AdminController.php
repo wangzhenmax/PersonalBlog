@@ -5,24 +5,20 @@ use Flc\Dysms\Request\SendSms;
 use models\Admin;
 class AdminController{
     public function captcha(){
-        // echo ROOT."libs/Captcha.php";
-        require ROOT."libs/Captcha.php";
-    }
-    //列表
-    public function blogAll(){
-        view("blog/index");
-    }
-    //显示添加
-    public function addBlog(){
-        view("blog/create");
+        $en = \libs\Captcha::getInstance();
+        $en->en_captcha();
     }
     // 显示登录
     public function login()
     {      
         view('admin/login');
     }
+   
     // 接收登录
     public function doLogin(){
+        if(strcasecmp($_SESSION['validateCode'],$_POST['captcha'])!=0){
+           die("验证码输入错误");
+        }
         $model = new Admin;
         $emails = $_POST['emails'];
         $password = $_POST['password'];
@@ -118,6 +114,11 @@ class AdminController{
     }
     // 显示主页
     public function index(){
-        view("/admin/index");
+        if(!isset($_SESSION['id'])){
+            view("/admin/login");
+        }else{
+            view("/admin/index");
+        }
+        
     }
 }

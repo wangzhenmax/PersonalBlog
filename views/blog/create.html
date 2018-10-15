@@ -9,55 +9,83 @@
     <link href="/Styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 
+
 <body>
     <h1>
-        <span class="action-span"><a href="/blog/index">数据列表</a></span>
-        <span class="action-span1"><a href="__GROUP__">管理中心</a></span>
+        <span class="action-span">
+            <a href="/blog/index">数据列表</a>
+        </span>
+        <span class="action-span1">
+            <a href="__GROUP__">管理中心</a>
+        </span>
         <span id="search_id" class="action-span1"> - 添加新记录 </span>
         <div style="clear:both"></div>
     </h1>
     <div class="main-div">
         <form action="/blog/insert" method="post" enctype="multipart/form-data">
             <table width="100%" id="general-table">
-                                <tr>
+                <tr>
                     <td class="label">
                         标题:</td>
                     <td>
-                                                <input type='text' size="80" name='title'>
-                                                <font color="red">*</font>
+                        <input type='text' size="80" name='title'>
+                        <font color="red">*</font>
                     </td>
                 </tr>
-                                <tr>
+                <tr>
                     <td class="label">
                         类型:</td>
                     <td>
-                                                <input type='text' size="80" name='type'>
-                                                <font color="red">*</font>
+                        <select name="type" id="">
+                            <option value="">请选择分类</option>
+                            <?php foreach($type as $v):?>
+                            <option value="<?=$v['id']?>">
+                                <?=$v['name']?>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
                     </td>
                 </tr>
-                                <tr>
+                <tr>
                     <td class="label">
                         简介:</td>
                     <td>
-                                                <input type='text' size="80" name='introduce'>
-                                                <font color="red">*</font>
+                        <input type='text' size="80" name='introduce'>
+                        <font color="red">*</font>
                     </td>
                 </tr>
-                                <tr>
+                <tr>
                     <td class="label">
                         内容:</td>
-                    <td>
-                                                <textarea name="content" id="" cols="80" rows="10"></textarea>
-                                                <font color="red">*</font>
+                    <td class="content" style="width:1100px">
+                        <!-- -- 加载UEEdtior编辑器的容器 -->
+
+
+                        <script id="container" name="content" type="text/plain"></script>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="/js/utf8-php/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="/js/utf8-php/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container', {
+                                //initialFrameWidth : 600,
+                                initialFrameHeight: 400
+                            });
+                        </script>
+
+
+                        <!-- 加载UEEdtior编辑器的容器结束 -->
                     </td>
                 </tr>
-                            </table>
+            </table>
             <div class="button-div">
                 <input type="submit" value=" 确定 " />
                 <input type="reset" value=" 重置 " />
             </div>
         </form>
     </div>
-    <?=view('comment/footer')?></body>
+    <?=view('comment/footer')?>
+</body>
 
 </html>
