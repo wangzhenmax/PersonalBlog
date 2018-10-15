@@ -34,10 +34,9 @@
                 </tr>
                 <tr>
                     <td class="label">
-                        类型:</td>
+                        一级分类:</td>
                     <td>
-                        <select name="type" id="">
-                            <option value="">请选择分类</option>
+                        <select name="cat_1" id="">
                             <?php foreach($type as $v):?>
                             <option value="<?=$v['id']?>">
                                 <?=$v['name']?>
@@ -48,9 +47,39 @@
                 </tr>
                 <tr>
                     <td class="label">
+                        二级分类:</td>
+                    <td>
+                        <select name="cat_2" id="">
+                
+                        </select>
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        三级分类:</td>
+                    <td>
+                        <select name="cat_3" id="">
+                
+                        </select>
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
                         简介:</td>
                     <td>
                         <input type='text' size="80" name='introduce'>
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        是否显示:</td>
+                    <td>
+                        <input type='radio' checked size="80" name='is_show' value="1">:是
+                        <font color="red">*</font>
+                        <input type='radio' size="80" name='is_show' value="0">:否
                         <font color="red">*</font>
                     </td>
                 </tr>
@@ -87,5 +116,63 @@
     </div>
     <?=view('comment/footer')?>
 </body>
-
+<script src="/js/jquery.min.js"></script>
+<script>
+    // 三级联动
+        var id = $("select[name=cat_1]").val();
+        $("select[name=cat_1]").change(function () {
+            if ($(this).val() != '') {
+                var parent = $(this).val();
+                console.log(parent);
+                ajax_get(parent, 2)
+            }
+        })
+        $("select[name=cat_2]").change(function () {
+            if ($(this).val() != '') {
+                var parent = $(this).val();
+                ajax_get2(parent, 3)
+            }
+        })
+        var temp = 0;
+        function ajax_get(parent, num) {
+            var str = '';
+            if (num == 3) {
+                temp++
+            }
+            else {
+                temp = 0;
+            }
+            if (temp > 1) {
+                return false;
+            }
+            $.ajax({
+                type: "GET",
+                url: "/admin/ajax_get_cat?id=" + parent,
+                dataType: "json",
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        str += '<option  value="' + data[i].id + '">' + data[i].name + '</option>'
+                    }
+                    $("select[name=cat_"+num+"]").html(str);
+                    var three_id = $("select[name=cat_2]").val();
+                    ajax_get(three_id, 3)
+                }
+            })
+        }
+        function ajax_get2(parent, num) {
+            var str = '';
+            $.ajax({
+                type: "GET",
+                url: "/admin/ajax_get_cat?id=" + parent,
+                dataType: "json",
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        str += '<option  value="' + data[i].id + '">' + data[i].name + '</option>'
+                    }
+                    $("select[name=cat_"+num+"]").html(str);
+                }
+            })
+        }
+        ajax_get(id, 2)
+</script>
 </html>

@@ -3,44 +3,84 @@ namespace controllers;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use models\Admin;
-class AdminController{
-    public function captcha(){
-        $en = \libs\Captcha::getInstance();
-        $en->en_captcha();
+class AdminController  extends BaseController{
+    public function edit(){
+        $id = $_GET['id'];
+        $model = new Admin;
+        $data = $model->findOne($id);
+        view("type/edit",$data);
     }
-    // 显示登录
-    public function login()
-    {      
-        view('admin/login');
+    //修改分类
+    public function update(){
+        $model = new Admin;
+        $id = $_GET['id'];
+        $name = $_POST['name'];
+        if($model->update($name,$id)){
+            redirect("/admin/types");
+        }else{
+            die('修改失败');
+        }
+    }
+
+    // 删除分类
+    public function delete(){
+         $model = new Admin;
+         $id = $_GET['id'];
+         $model->delete($id);
+         redirect("/admin/types");
+    }
+    // 显示分类
+    public function types(){
+        $model = new Admin;
+        $data = $model->getType();
+        view("type/type",[
+            "data"=>$data
+        ]);
+    }
+    // 修改分类
+    public function addType(){
+        $model = new Admin;
+        $data = $model->getTypeTop();
+        view("type/addtype",[
+             "data"=>$data
+        ]);
+    }
+    // 增加分类
+    public function doAddType(){
+        $model = new Admin;
+        $model->fill($_POST);
+        $data = $model->insert();
+        if($data){
+            redirect("/admin/types");
+        }
+    }
+    // 三级联动
+    public function ajax_get_cat(){
+        $id = $_GET['id'];
+        $model = new Admin;
+        $data = $model->ajax_get_cat($id);
+        echo json_encode($data);
+    }
+    //验证码
+    // public function captcha(){
+    //     $en = \libs\Captcha::getInstance();
+    //     $en->en_captcha();
+    // }
+    // 退出登录
+    public function logout(){
+        $_SESSION = [];
+        session_destroy();
+        redirect("index/login");
     }
    
-    // 接收登录
-    public function doLogin(){
-        if(strcasecmp($_SESSION['validateCode'],$_POST['captcha'])!=0){
-           die("验证码输入错误");
-        }
-        $model = new Admin;
-        $emails = $_POST['emails'];
-        $password = $_POST['password'];
-        if(isset($_SESSION[$emails.' '])){
-            if($_SESSION[$emails.' ']>=3){
-                die("你已经错了三次了");
-            }
-        }else{
-            $_SESSION[$emails.' '] = 0;
-        }
-        $user = $model->find($emails,$password);
-        if(!$user){
-            $_SESSION[$emails.' ']++;
-            redirect("/admin/login");
-        }else{
-            redirect("/admin/index");
-        }
+    // 显示主页
+    public function index(){
+             view("admin/index");
     }
-    public function register()
-    {
-        view('admin/register');
-    }
+    // public function register()
+    // {
+    //     view('admin/register');
+    // }
     //接收注册
     // public function doRegister(){
     //    $email = $_POST['email'];
@@ -97,28 +137,20 @@ class AdminController{
 
 
 
-    public function active_user(){
-        $code = $_GET['code'];
-        $redis = \libs\Predis::getinterface();
-        $key = "temp_user:".$code;
-        $data = $redis->get($key);
-        if($data){
-            $redis->del($key);
-            $data = json_decode($data,true);
-            $user = new User;
-            $user->add($data['email'],$data['password']);
-            header("Location:/admin/index");
-        }else{
-          echo " 激活码错误！";
-        }
-    }
-    // 显示主页
-    public function index(){
-        if(!isset($_SESSION['id'])){
-            view("/admin/login");
-        }else{
-            view("/admin/index");
-        }
-        
-    }
+    // public function active_user(){
+    //     $code = $_GET['code'];
+    //     $redis = \libs\Predis::getinterface();
+    //     $key = "temp_user:".$code;
+    //     $data = $redis->get($key);
+    //     if($data){
+    //         $redis->del($key);
+    //         $data = json_decode($data,true);
+    //         $user = new User;
+    //         $user->add($data['email'],$data['password']);
+    //         header("Location:/admin/index");
+    //     }else{
+    //       echo " 激活码错误！";
+    //     }
+    // }
+ 
 }

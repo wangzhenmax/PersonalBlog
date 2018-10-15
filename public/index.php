@@ -3,8 +3,16 @@
 ini_set('session.save_handler', 'redis');
 // 设置 redis 服务器的地址、端
 ini_set('session.save_path', 'tcp://127.0.0.1:6379?database=3');
+ini_set('session.gc_maxlifetime', 3600);
 
 session_start();
+
+// phpinfo();
+
+// $_SESSION['name'] = 'tom';
+// var_dump($_SESSION);
+// die;
+
 // 定义常量
 define('ROOT', dirname(__FILE__) . '/../');
 
@@ -133,6 +141,7 @@ function message($str,$type,$url,$seconds=5){
 }
 //访问指定url
 function redirect($url){
+    
     header("Location:".$url);
     exit;
 }

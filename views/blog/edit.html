@@ -9,6 +9,7 @@
     <link href="/Styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 
+
 <body>
     <h1>
         <span class="action-span">
@@ -33,22 +34,35 @@
                 </tr>
                 <tr>
                     <td class="label">
-                        类型:</td>
+                        一级分类:</td>
                     <td>
-                        <select name="type" id="">
-                            <option value="">请选择分类</option>
-                            <?php foreach($type as $k=>$v):?>
-                            <?php if($k+1==$data['type_id']):?>
-                                <option selected value="<?=$v['id']?>">
-                                    <?=$v['name']?> 
-                                </option>
-                            <?php else :?>
-                                <option value="<?=$v['id']?>">
-                                    <?=$v['name']?>
-                                </option>
-                            <?php endif?>
+                        <select name="cat_1" id="">
+                            <?php foreach($type as $v):?>
+                            <option value="<?=$v['id']?>">
+                                <?=$v['name']?>
+                            </option>
                             <?php endforeach;?>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        二级分类:</td>
+                    <td>
+                        <select name="cat_2" id="">
+
+                        </select>
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        三级分类:</td>
+                    <td>
+                        <select name="cat_3" id="">
+
+                        </select>
+                        <font color="red">*</font>
                     </td>
                 </tr>
                 <tr>
@@ -61,11 +75,21 @@
                 </tr>
                 <tr>
                     <td class="label">
+                        是否显示:</td>
+                    <td>
+                        <input <?php if($data['is_show']==1) echo 'checked';?> type='radio'  size="80" name='is_show' value="1">:是
+                        <font color="red">*</font>
+                        <input <?php if($data['is_show']==0) echo 'checked';?> type='radio' size="80" name='is_show' value="0">:否
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
                         内容:</td>
-                    <td style="width:1100px">
+                    <td class="content" style="width:1100px">
                         <!-- -- 加载UEEdtior编辑器的容器 -->
-                        
-                        
+
+
                         <script id="container" name="content" type="text/plain"><?=$data['content']?></script>
                         <!-- 配置文件 -->
                         <script type="text/javascript" src="/js/utf8-php/ueditor.config.js"></script>
@@ -78,8 +102,8 @@
                                 initialFrameHeight: 400
                             });
                         </script>
-                        
-                        
+
+
                         <!-- 加载UEEdtior编辑器的容器结束 -->
                     </td>
                 </tr>
@@ -92,5 +116,72 @@
     </div>
     <?=view('comment/footer')?>
 </body>
+<script src="/js/jquery.min.js"></script>
+<script>
+    // 三级联动
+    var id = $("select[name=cat_1]").val();
+    var type_2 = "<?=$data['cat_2']?>";
+    var type_3 = "<?=$data['cat_3']?>";
+    $("select[name=cat_1]").change(function () {
+        if ($(this).val() != '') {
+            var parent = $(this).val();
+            console.log(parent);
+            ajax_get(parent, 2)
+        }
+    })
+    $("select[name=cat_2]").change(function () {
+        if ($(this).val() != '') {
+            var parent = $(this).val();
+            ajax_get2(parent, 3)
+        }
+    })
+    var temp = 0;
+    function ajax_get(parent, num) {
+        var str = '';
+        if (num == 3) {
+            temp++
+        }
+        else {
+            temp = 0;
+        }
+        if (temp > 1) {
+            return false;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/admin/ajax_get_cat?id=" + parent,
+            dataType: "json",
+            success: function (data) {
+                for (let i = 0; i < data.length; i++) {
+                     if (data[i]['id'] == type_2) {
+                        str += '<option  selected="selected"  value="' + data[i].id + '">' + data[i].name + '</option>'
+                    } else if (data[i]['id'] == type_3) {
+                        str += '<option  selected="selected"  value="' + data[i].id + '">' + data[i].name + '</option>'
+                    } else {
+                        str += '<option   value="' + data[i].id + '">' + data[i].name + '</option>'
+                    }
+                }
+                $("select[name=cat_" + num + "]").html(str);
+                var three_id = $("select[name=cat_2]").val();
+                ajax_get(three_id, 3)
+            }
+        })
+    }
+    function ajax_get2(parent, num) {
+        var str = '';
+        $.ajax({
+            type: "GET",
+            url: "/admin/ajax_get_cat?id=" + parent,
+            dataType: "json",
+            success: function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    str += '<option   value="' + data[i].id + '">' + data[i].name + '</option>'
+                }
+                $("select[name=cat_" + num + "]").html(str);
+            }
+        })
+    }
+    ajax_get(id, 2)
+</script>
 
 </html>

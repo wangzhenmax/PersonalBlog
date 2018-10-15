@@ -32,10 +32,12 @@
                 <input type="text" name="keyword" value="<?=@$_GET['keyword']?>"> 发表日期：
                 <input type="text" name="start_date" value="<?=@$_GET['start_date']?>"> ~
                 <input type="text" name="end_date" value="<?=@$_GET['end_date']?>"> 是否显示：
-                <input type="radio" name="is_show" value="" <?php if(@$_GET[ 'is_show']!='1' && @$_GET[ 'is_show']!=='0' ) echo 'checked';
-                    ?> > 全部
-                <input type="radio" name="is_show" value="1" <?php if(@$_GET[ 'is_show']=='1' ) echo 'checked'; ?> > 显示
-                <input type="radio" name="is_show" value="0" <?php if(@$_GET[ 'is_show']=='0' ) echo 'checked'; ?> > 不显示
+                <input type="radio" name="is_show" value="" <?php if(@$_GET[ 'is_show' ]!='1' && @$_GET[ 'is_show' ]!=='0'
+                    ) echo 'checked' ; ?> > 全部
+                <input type="radio" name="is_show" value="1" <?php if(@$_GET[ 'is_show' ]=='1' ) echo 'checked' ; ?> >
+                显示
+                <input type="radio" name="is_show" value="0" <?php if(@$_GET[ 'is_show' ]=='0' ) echo 'checked' ; ?> >
+                不显示
                 <input type="submit" value="搜索">
             </div>
         </form>
@@ -48,7 +50,12 @@
                 <th>
                     标题 </th>
                 <th>
-                    类型 </th>
+                    一级分类 </th>
+                <th>
+                    二级分类 </th>
+                <th>
+                    三级分类 </th>
+
                 <th>浏览量
                     <a href="?<?=getUrlParams(['odby','odway'])?>odby=look&odway=asc">☝︎</a>
                     <a href="?<?=getUrlParams(['odby','odway'])?>odby=look&odway=desc">☟</a>
@@ -57,8 +64,7 @@
                     喜欢 </th>
                 <th>
                     简介 </th>
-                <th>
-                    内容 </th>
+
                 <th>
                     创建时间
                     <a href="?<?=getUrlParams(['odby','odway'])?>odby=data&odway=asc">☝︎</a>
@@ -76,9 +82,18 @@
                 <td>
                     <?=$v['title']?>
                 </td>
+                
                 <td>
-                    <?=$v['name']?>
+                    <?=$v['cat1']?>
                 </td>
+                <td>
+                    <?=$v['cat2']?>
+                </td>
+                <td>
+                    <?=$v['cat3']?>
+                </td>
+
+
                 <td>
                     <?=$v['look']?>
                 </td>
@@ -88,9 +103,7 @@
                 <td>
                     <?=$v['introduce']?>
                 </td>
-                <td>
-                    <?=$v['content']?>
-                </td>
+
                 <td>
                     <?=$v['created_at']?>
                 </td>
@@ -99,7 +112,8 @@
                     <a onclick="return confirm('确定要删除吗？');" href="/blog/delete?id=<?=$v['id']?>">删除</a>
                 </td>
             </tr>
-            <?php endforeach; ?> </table>
+            <?php endforeach; ?>
+        </table>
 
         <!-- 分页开始 -->
         <table id="page-table" cellspacing="0">

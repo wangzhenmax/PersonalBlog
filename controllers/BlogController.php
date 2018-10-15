@@ -2,8 +2,10 @@
 namespace controllers;
 
 use models\Blog;
+use models\Admin;
 
-class BlogController{
+class BlogController  extends BaseController {
+ 
     // 列表页
     public function index()
     {
@@ -19,8 +21,8 @@ class BlogController{
     // 显示添加的表单
     public function create()
     {
-        $model = new Blog;
-        $type = $model->getType();
+        $model = new Admin;
+        $type = $model->ajax_get_cat();
         view('blog/create',[
             'type'=>$type
         ]);
@@ -30,13 +32,14 @@ class BlogController{
     public function insert()
     {
         $model = new Blog;
-        $data = $model->add();
+        $model->fill($_POST);
+        $id = $_SESSION['id'];
+        $data = $model->insert($id);
         if($data){
             redirect('/blog/index');
         }else{
             echo "失败!";
         }
-        
     }
 
     // 显示修改的表单
@@ -44,7 +47,8 @@ class BlogController{
     {
         $model = new Blog;
         $data=$model->findOne($_GET['id']);
-        $type = $model->getType();
+        $Adminmodel = new Admin;
+        $type = $Adminmodel->ajax_get_cat();
         view('blog/edit', [
             'data' => $data,    
             'type' =>$type
@@ -56,7 +60,7 @@ class BlogController{
     {
         
         $model = new Blog;
-        $model->update($_GET['id']);
+        $model->updates($_GET['id']);
         redirect('/blog/index');
     }
 

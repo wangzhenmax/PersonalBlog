@@ -6,44 +6,30 @@ class Blog extends Base
     // 设置这个模型对应的表
     protected $table = 'blog';
     // 设置允许接收的字段
-    protected $fillable = ['title','type','introduce','content',"user_id"];
+    protected $fillable = ['title','type','introduce','content',"user_id","cat_1","cat_2","cat_3","is_show"];
     public function getType(){
-        $stmt  = $this->_db->prepare("SELECT * from type");
+        $stmt  = $this->_db->prepare("SELECT * from type where parent_id = 1 ");
         $stmt->execute();
         $type  = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $type;
     }
-    public function add(){
-        $id= $_SESSION['id'];
-        $data = [
-            ":title"=>$_POST["title"],
-            ":type"=>$_POST["type"],
-            ":introduce"=>$_POST["introduce"],
-            ":content"=>$_POST["content"],
-            ":user_id"=>$id   
-        ];
-        $sql = "INSERT INTO blog SET title = :title,type_id = :type,introduce = :introduce,content = :content,user_id = :user_id";
-        $stmt = $this->_db->prepare($sql);
-        return $data = $stmt->execute($data);
-        if($data){
-            return $data;
-        }else{
-            return $data;
-        }
-    }
 
-    public function update(){
+    public function updates(){
         $id = $_GET['id'];
         $data = [
-            ":title"=>$_POST["title"],
-            ":type"=>$_POST['type'],
-            ':introduce'=>$_POST['introduce'],
-            ':content'=>$_POST['content'],
-            ':user_id'=>$id   
+           $_POST["title"],
+           $_POST['introduce'],
+           $_POST['content'],
+           $_POST['cat_1'],
+            $_POST['cat_2'],
+           $_POST['cat_3'],
+           $_POST['is_show'],
+           $id   
         ];
-    $sql = "UPDATE blog SET title = '{$_POST['title']}',type_id = {$_POST['type']},introduce = '{$_POST['introduce']}',content = '{$_POST['content']}'  where id = {$_GET['id']}";
+        $sql = "UPDATE blog SET title =? ,introduce = ?,content = ?,cat_1 = ?,cat_2 = ?,cat_3 = ?,is_show = ? WHERE  id = ?";
         $stmt = $this->_db->prepare($sql);
-        $data = $stmt->execute($data);
+        $arr = $stmt->execute($data);
+        echo $sql;
     }
     public function search()
     {
@@ -95,43 +81,27 @@ class Blog extends Base
 
         /****************** 翻页 ****************/
         $perpage = 3; // 每页15
-        // 接收当前页码（大于等于1的整数）， max：最参数中大的值
         $page = isset($_GET['page']) ? max(1,(int)$_GET['page']) : 1;
-        // 计算开始的下标
-        // 页码  下标
-        // 1 --> 0
-        // 2 --> 15
-        // 3 --> 30
-        // 4 --> 45
         $offset = ($page-1)*$perpage;
-        // 制作按钮
-        // 取出总的记录数
         $sql = "SELECT COUNT(*) FROM blog WHERE $where";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute($value);
         $count = $stmt->fetch(\PDO::FETCH_COLUMN );
-        // 计算总的页数（ceil：向上取整（天花板）， floor：向下取整（地板））
         $pageCount = ceil( $count / $perpage );
         $btns = '';
         for($i=1; $i<=$pageCount; $i++)
         {
-            // 先获取之前的参数
             $params = getUrlParams(['page']);
             $class = $page==$i ? 'active' : '';
             $btns .= "<a class='$class' href='?{$params}page=$i'> $i </a>";
         }
-
-        /*************** 执行 sqL */
-        // 预处理 SQL
-        $leftJoin = "  left join type  on blog.type_id=type.id  ";
-        $sql = "SELECT blog.* , type.name  FROM blog $leftJoin  WHERE $where ORDER BY $odby $odway LIMIT $offset,$perpage";
+         $leftJoin = "  blog inner join type as type1 inner join type as type2 inner join type as type3 on type1.id = blog.cat_1 and type2.id = blog.cat_2 and type3.id = blog.cat_3 ";
+        $sql = "SELECT blog.* , type1.name as cat1, type2.name as cat2 , type3.name as cat3  FROM $leftJoin   WHERE $where group by blog.id  ORDER BY $odby $odway LIMIT $offset,$perpage";
         $stmt = $this->_db->prepare($sql);
         // 执行 SQL
         $stmt->execute($value);
-
         // 取数据
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        // var_dump($data);
         return [
             'btns' => $btns,
             'data' => $data,
