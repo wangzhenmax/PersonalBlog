@@ -8,9 +8,12 @@ class Blog extends Base
     protected $table = 'blog';
     // 设置允许接收的字段
     protected $fillable = ['title','type','introduce','content',"user_id","cat_1","cat_2","cat_3","is_show"];
+    public function blogAll(){
+        $data = $this->getAll("SELECT * from $this->table ");
+        return $data;
+    }
     // 插入 / 修改前 
     public function _before_write(){
-         $this->_delete_img();
         $uploader = \libs\Uploader::make();
         if(count($_FILES['covers']['name'])>1){
             $tmp = [];
@@ -18,6 +21,8 @@ class Blog extends Base
             $paths = [];
                 foreach($_FILES['covers']['name'] as $k => $v){
                 if($_FILES['covers']['error'][$k]==0){
+                    $this->_delete_img();
+
                     $tmp['name'] = $v;
                     $tmp['type'] = $_FILES['covers']['type'][$k];
                     $tmp['tmp_name'] = $_FILES['covers']['tmp_name'][$k];
@@ -160,7 +165,7 @@ class Blog extends Base
         }
 
         /****************** 翻页 ****************/
-        $perpage = 3; // 每页15
+        $perpage = 8; // 每页15
         $page = isset($_GET['page']) ? max(1,(int)$_GET['page']) : 1;
         $offset = ($page-1)*$perpage;
         $sql = "SELECT COUNT(*) FROM blog WHERE $where";

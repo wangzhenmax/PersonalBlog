@@ -11,45 +11,37 @@
 
 <body>
     <h1>
-        <span class="action-span"><a href="/article_category/index">数据列表</a></span>
+        <span class="action-span"><a href="/admin_user/index">数据列表</a></span>
         <span class="action-span1"><a href="/admin/index">管理中心</a></span>
         <span id="search_id" class="action-span1"> - 添加新记录 </span>
         <div style="clear:both"></div>
     </h1>
     <div class="main-div">
-        <form action="/admin/doAddType" method="post" enctype="multipart/form-data">
+        <form action="/admin_user/insert" method="post" enctype="multipart/form-data">
             <table width="100%" id="general-table">
-                <tr>
+                                <tr>
                     <td class="label">
-                        分类名称:</td>
+                        用户:</td>
                     <td>
-                        <input type='text' size="80" name='name'>
-                        <font color="red">*</font>
+                                                <input type='text' size="80" name='emails'>
+                                                <font color="red">*</font>
                     </td>
                 </tr>
-               
-                <tr>
+                                <tr>
                     <td class="label">
-                        所属上级
-                     </td>
+                        密码:</td>
                     <td>
-                        <select name="parent_id" id="">
-                        <?php foreach($data as $v):?>
-                            <option value="<?=$v['id']?>">
-                                <?=str_repeat("-",5*($v['lv'])).$v['name']?>
-                            </option>
-                        <?php endforeach;?>
-                    </select>
+                                                <input type='text' size="80" name='password'>
+                                                <font color="red">*</font>
                     </td>
                 </tr>
-               
-            </table>
+                            </table>
             <div class="button-div">
                 <input type="submit" value=" 确定 " />
                 <input type="reset" value=" 重置 " />
             </div>
         </form>
     </div>
-</body>
+    <?=view('comment/footer')?></body>
 
 </html>

@@ -16,7 +16,7 @@
             <a href="/blog/index">数据列表</a>
         </span>
         <span class="action-span1">
-            <a href="__GROUP__">管理中心</a>
+            <a href="/admin/index">管理中心</a>
         </span>
         <span id="search_id" class="action-span1"> - 添加新记录 </span>
         <div style="clear:both"></div>
@@ -82,11 +82,11 @@
                         <div class="img_preview">
                             <?php if($data['cover_big']): ?>
                             <img src="<?=$data['cover_big']?>" width="120" height="120" alt="">
-                            <?php else :?>
+                            <?php elseif($data['cover_md']):?>
                                 <?php foreach($data['cover_md'] as $k=>$v):?>
                                 <img src="<?=$v?>"  alt="">
                                 <?php endforeach;?>
-                            <?php endif;?>
+                            <?php endif;?>  
                         </div>
                         <input class="preview" type='file' multiple="multiple" size="80" name='covers[]'>
                         <font color="red">*</font>

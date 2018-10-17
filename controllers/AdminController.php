@@ -4,6 +4,8 @@ use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use models\Admin;
 class AdminController  extends BaseController{
+
+
     //修改分类名称
     public function edit(){
         $id = $_GET['id'];
@@ -38,7 +40,7 @@ class AdminController  extends BaseController{
             "data"=>$data
         ]);
     }
-    // 修改分类
+    // 显示加分类
     public function addType(){
         $model = new Admin;
         $data = $model->getTypeTop();

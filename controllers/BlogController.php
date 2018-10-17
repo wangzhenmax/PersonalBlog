@@ -75,4 +75,5 @@ class BlogController  extends BaseController {
         $model->delete($_GET['id']);
         redirect('/blog/index');
     }
+   
 }

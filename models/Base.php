@@ -1,8 +1,6 @@
 <?php
 namespace models;
-
 use PDO;
-
 /**
  * 所有模型的父模型，
  * 在这里实现所有表的：添加、修改、删除、查询翻页等功能
@@ -11,12 +9,10 @@ use PDO;
  class Base
  {
     protected $_db;
-
     // 操作的表名，值由子类设置
     protected $table;
     // 表单中的数据，值由控制器设置
     protected $data;    
-
     /**
      * $data = [
      *   'title'=>'xxxx',
@@ -24,21 +20,17 @@ use PDO;
      *   'is_show'=> 'y'
      * ];
      */
-
     public function __construct()
     {
         $this->_db = \libs\Db::getDb();
     }
-
     /**
      * 钩子函数
      */
-
     protected function _before_write(){}
     protected function _after_write(){}
     protected function _before_delete(){}
     protected function _after_delete(){}
-
     public function update($id)
     {
         $this->_before_write();
@@ -50,16 +42,12 @@ use PDO;
             $values[] = $v;
             $token[] = '?';
         }
-
         $set = implode(',', $set);
-
         $values[] = $id;
-
         $sql = "UPDATE {$this->table} SET $set WHERE id=?";
-
         $stmt = $this->_db->prepare($sql);
         $stmt->execute($values);
-        // $this->_after_write();
+        $this->_after_write();
     }
 
     public function insert($id = 0)
@@ -84,13 +72,14 @@ use PDO;
         $sql = "INSERT INTO {$this->table}($keys) VALUES($token)";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute($values);
-        return $this->data['id'] = $this->_db->lastInsertId();
-        // $this->_after_write();
+        $this->data['id'] = $this->_db->lastInsertId();
+        $this->_after_write();
+        return  $this->data['id'];
     }
      // 接收表单中的数据
     public function fill($data)
     {
-        
+     
         // 判断是否在白名单中
         foreach($data as $k => $v)
         {
@@ -107,7 +96,7 @@ use PDO;
         $this->_before_delete();
         $stmt = $this->_db->prepare("DELETE FROM {$this->table} WHERE id=?");
         $stmt->execute([$id]);
-        // $this->_after_delete();
+        $this->_after_delete();
     }
 
     public function findAll($options = [])
@@ -117,7 +106,7 @@ use PDO;
             'where' => 1,
             'order_by' => 'id',
             'order_way' => 'desc',
-            'per_page'=>3,
+            'per_page'=>8,
             'join'=>'',
             'groupby'=>'',
             'like'=>'',

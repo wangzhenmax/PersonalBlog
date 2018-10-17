@@ -9,12 +9,6 @@ class Admin extends Base
     protected $table = 'type';
     // 设置允许接收的字段
     protected $fillable = ['name','parent_id'];
-
-    
-
-
-
-
     // 删除分类以及子分类
     public function deleteType($id){
         $data = [$id,$id];
@@ -68,11 +62,37 @@ class Admin extends Base
         if($user){
             $_SESSION['email']  = $emails;
             $_SESSION['id'] = $user['id'];
+            if($_SESSION['username']==="457340@qq.com"){
+                $_SESSION['root'] = true;
+            }else{
+                $_SESSION['path'] = $this->getUrlPath($user['id']);
+            }
             // echo  $_SESSION['id'] ;die;
             return true;
         }else{
             return false;
         }
+    }
+    // 获取管理员管理的地址
+    public function getUrlPath($id){
+        $sql = "SELECT c.path 
+                from admin_role a 
+                left join role_privilege b on a.role_id = b.role_id 
+                left join privilege c on b.privilege_id = c.id
+                where a.admin_id = ? AND c.path!=''";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute([$id]);
+        $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $_ret = [];
+        foreach($data as $key =>$v){
+            if(FALSE===strpos($v['path'],",")){
+                $_ret[] = $v['path'];
+            }else{
+                $_tt[] = explode(',',$v['path']);
+                $_ret[] = array_merge($_ret,$_tt);
+            }
+        }
+        return $_ret;
     }
     // 三级联动
     public function ajax_get_cat($id=0){
