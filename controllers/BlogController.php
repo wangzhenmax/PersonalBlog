@@ -47,6 +47,9 @@ class BlogController  extends BaseController {
     {
         $model = new Blog;
         $data=$model->findOne($_GET['id']);
+        if($data['cover_md']){
+            $data['cover_md'] = json_decode($data['cover_md']);
+        };
         $Adminmodel = new Admin;
         $type = $Adminmodel->ajax_get_cat();
         view('blog/edit', [
@@ -58,9 +61,10 @@ class BlogController  extends BaseController {
     // 修改表单的方法
     public function update()
     {
-        
+        $id = $_GET['id'];
         $model = new Blog;
-        $model->updates($_GET['id']);
+        $model->fill($_POST);
+        $data = $model->update($id);
         redirect('/blog/index');
     }
 

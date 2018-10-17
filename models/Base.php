@@ -39,6 +39,29 @@ use PDO;
     protected function _before_delete(){}
     protected function _after_delete(){}
 
+    public function update($id)
+    {
+        $this->_before_write();
+        $set = [];
+        $token = [];
+        foreach($this->data as $k => $v)
+        {
+            $set[] = "$k=?";
+            $values[] = $v;
+            $token[] = '?';
+        }
+
+        $set = implode(',', $set);
+
+        $values[] = $id;
+
+        $sql = "UPDATE {$this->table} SET $set WHERE id=?";
+
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute($values);
+        // $this->_after_write();
+    }
+
     public function insert($id = 0)
     {
         $this->_before_write();
@@ -84,7 +107,7 @@ use PDO;
         $this->_before_delete();
         $stmt = $this->_db->prepare("DELETE FROM {$this->table} WHERE id=?");
         $stmt->execute([$id]);
-        $this->_after_delete();
+        // $this->_after_delete();
     }
 
     public function findAll($options = [])

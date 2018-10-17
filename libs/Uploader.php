@@ -40,6 +40,7 @@ class Uploader
         $this->_file = $_FILES[$name];
         $this->_subDir = $subdir;
 
+
         if(!$this->_checkType())
         {
             die('图片类型不正确！');

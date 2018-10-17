@@ -10,29 +10,41 @@ class Admin extends Base
     // 设置允许接收的字段
     protected $fillable = ['name','parent_id'];
 
+    
+
+
+
+
+    // 删除分类以及子分类
+    public function deleteType($id){
+        $data = [$id,$id];
+        $stmt = $this->_db->prepare("DELETE FROM {$this->table} WHERE id = ? or parent_id = ?");
+        $stmt->execute($data);
+    }
     //修改分类
-    public function update($name,$id){
+    public function updates($name,$id){
         $stmt = $this->_db->prepare("UPDATE type set name = ?  where id = ?");
         return  $stmt->execute([
             $name,
             $id
         ]);
     }
-    // 获取所有分类
+    // 获取一级and一级子分类 
     public function getTypeTop(){
-        $stmt = $this->_db->prepare("SELECT * from type where id = 1 or id = 2 or id  = 3  ");
+        $stmt = $this->_db->prepare("SELECT * from type where parent_id = 0 or parent_id = 1 ");
         $stmt->execute();
         $data  = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $data = $this->_tree($data);
 
     }
+    // 获取所有的分类/递归
     public function getType(){
         $stmt = $this->_db->prepare("SELECT * from type ");
         $stmt->execute();
         $data  = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $data = $this->_tree($data);
-
     }
+    // 递归获取子分类
     public function _tree($data,$parent_id=0,$lv=0){
         static $arr = [];
         foreach($data as $v){
@@ -45,7 +57,6 @@ class Admin extends Base
         return $arr;
 
     }
-
     //插入数据
     public function find($emails,$password){
         $stmt = $this->_db->prepare("SELECT * from admin_user where emails = ? AND password = ?");
@@ -63,6 +74,7 @@ class Admin extends Base
             return false;
         }
     }
+    // 三级联动
     public function ajax_get_cat($id=0){
         $stmt = $this->_db->prepare("SELECT * from type where parent_id = ?");
         $stmt->execute([$id]);

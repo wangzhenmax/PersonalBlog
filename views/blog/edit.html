@@ -75,6 +75,25 @@
                 </tr>
                 <tr>
                     <td class="label">
+                        封面:</td>
+                    <td>
+                        /可多选<br>
+                        /如需多选请选择三张<br>
+                        <div class="img_preview">
+                            <?php if($data['cover_big']): ?>
+                            <img src="<?=$data['cover_big']?>" width="120" height="120" alt="">
+                            <?php else :?>
+                                <?php foreach($data['cover_md'] as $k=>$v):?>
+                                <img src="<?=$v?>"  alt="">
+                                <?php endforeach;?>
+                            <?php endif;?>
+                        </div>
+                        <input class="preview" type='file' multiple="multiple" size="80" name='covers[]'>
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
                         是否显示:</td>
                     <td>
                         <input <?php if($data['is_show']==1) echo 'checked';?> type='radio'  size="80" name='is_show' value="1">:是
@@ -117,6 +136,7 @@
     <?=view('comment/footer')?>
 </body>
 <script src="/js/jquery.min.js"></script>
+<script src="/Js/img_preview.js"></script>
 <script>
     // 三级联动
     var id = $("select[name=cat_1]").val();

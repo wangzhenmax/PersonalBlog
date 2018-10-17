@@ -32,9 +32,13 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\PropertyAccess\\' => 33,
+            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Inflector\\' => 28,
             'Symfony\\Component\\HttpFoundation\\' => 33,
+            'Spatie\\TemporaryDirectory\\' => 26,
+            'Spatie\\Image\\' => 13,
+            'Spatie\\ImageOptimizer\\' => 22,
         ),
         'P' => 
         array (
@@ -48,6 +52,11 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         array (
             'MyCLabs\\Enum\\' => 13,
             'Monolog\\' => 8,
+        ),
+        'L' => 
+        array (
+            'League\\Glide\\' => 13,
+            'League\\Flysystem\\' => 17,
         ),
         'I' => 
         array (
@@ -96,6 +105,10 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         array (
             0 => __DIR__ . '/..' . '/symfony/property-access',
         ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
         'Symfony\\Component\\OptionsResolver\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
@@ -107,6 +120,18 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Spatie\\TemporaryDirectory\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/temporary-directory/src',
+        ),
+        'Spatie\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/image/src',
+        ),
+        'Spatie\\ImageOptimizer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/image-optimizer/src',
         ),
         'Psr\\SimpleCache\\' => 
         array (
@@ -135,6 +160,14 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'League\\Glide\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/glide/src',
+        ),
+        'League\\Flysystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
         'Intervention\\Image\\' => 
         array (

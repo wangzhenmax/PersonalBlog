@@ -75,6 +75,16 @@
                 </tr>
                 <tr>
                     <td class="label">
+                        上传封面:</td>
+                    <td>
+                        /可多选<br>
+                        /如需多选请选择三张<br>
+                        <input class="preview" type='file' multiple="multiple" size="80" name='covers[]'>
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
                         是否显示:</td>
                     <td>
                         <input type='radio' checked size="80" name='is_show' value="1">:是
@@ -88,8 +98,6 @@
                         内容:</td>
                     <td class="content" style="width:1100px">
                         <!-- -- 加载UEEdtior编辑器的容器 -->
-
-
                         <script id="container" name="content" type="text/plain"></script>
                         <!-- 配置文件 -->
                         <script type="text/javascript" src="/js/utf8-php/ueditor.config.js"></script>
@@ -102,8 +110,6 @@
                                 initialFrameHeight: 400
                             });
                         </script>
-
-
                         <!-- 加载UEEdtior编辑器的容器结束 -->
                     </td>
                 </tr>
@@ -117,6 +123,7 @@
     <?=view('comment/footer')?>
 </body>
 <script src="/js/jquery.min.js"></script>
+<script src="/Js/img_preview.js"></script>
 <script>
     // 三级联动
         var id = $("select[name=cat_1]").val();

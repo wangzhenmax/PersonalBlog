@@ -4,6 +4,7 @@ use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use models\Admin;
 class AdminController  extends BaseController{
+    //修改分类名称
     public function edit(){
         $id = $_GET['id'];
         $model = new Admin;
@@ -15,7 +16,7 @@ class AdminController  extends BaseController{
         $model = new Admin;
         $id = $_GET['id'];
         $name = $_POST['name'];
-        if($model->update($name,$id)){
+        if($model->updates($name,$id)){
             redirect("/admin/types");
         }else{
             die('修改失败');
@@ -26,7 +27,7 @@ class AdminController  extends BaseController{
     public function delete(){
          $model = new Admin;
          $id = $_GET['id'];
-         $model->delete($id);
+         $model->deleteType($id);
          redirect("/admin/types");
     }
     // 显示分类
