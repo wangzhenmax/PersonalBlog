@@ -221,6 +221,13 @@ use PDO;
     {
         $stmt = $this->_db->prepare($sql);
         $stmt->execute($data);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function getLastOne()
+    {
+        $stmt = $this->_db->prepare("select id from blog order by id desc limit 1");
+        $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_COLUMN);
     }
  }

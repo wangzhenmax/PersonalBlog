@@ -83,10 +83,10 @@
                             <?php if($data['cover_big']): ?>
                             <img src="<?=$data['cover_big']?>" width="120" height="120" alt="">
                             <?php elseif($data['cover_md']):?>
-                                <?php foreach($data['cover_md'] as $k=>$v):?>
-                                <img src="<?=$v?>"  alt="">
-                                <?php endforeach;?>
-                            <?php endif;?>  
+                            <?php foreach($data['cover_md'] as $k=>$v):?>
+                            <img src="<?=$v?>" alt="">
+                            <?php endforeach;?>
+                            <?php endif;?>
                         </div>
                         <input class="preview" type='file' multiple="multiple" size="80" name='covers[]'>
                         <font color="red">*</font>
@@ -96,9 +96,31 @@
                     <td class="label">
                         是否显示:</td>
                     <td>
-                        <input <?php if($data['is_show']==1) echo 'checked';?> type='radio'  size="80" name='is_show' value="1">:是
+                        <input <?php if($data['is_show']==1) echo 'checked' ;?> type='radio' size="80" name='is_show'
+                        value="1">:是
                         <font color="red">*</font>
-                        <input <?php if($data['is_show']==0) echo 'checked';?> type='radio' size="80" name='is_show' value="0">:否
+                        <input <?php if($data['is_show']==0) echo 'checked' ;?> type='radio' size="80" name='is_show'
+                        value="0">:否
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        是否轮播:</td>
+                    <td>/如需轮播，请上传一张封面 <br>
+                        <input <?php if($data['banner']==1) echo 'checked' ;?> type='radio' checked size="80" name='banner' value="1">:是
+                        <font color="red">*</font>
+                        <input <?php if($data['banner']==0) echo 'checked' ;?> type='radio' size="80" name='banner' value="0">:否
+                        <font color="red">*</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        是否推荐:</td>
+                    <td>
+                        <input <?php if($data['recommend']==1) echo 'checked' ;?> type='radio' checked size="80" name='recommend' value="1">:是
+                        <font color="red">*</font>
+                        <input <?php if($data['recommend']==0) echo 'checked' ;?> type='radio' size="80" name='recommend' value="0">:否
                         <font color="red">*</font>
                     </td>
                 </tr>
@@ -173,7 +195,7 @@
             dataType: "json",
             success: function (data) {
                 for (let i = 0; i < data.length; i++) {
-                     if (data[i]['id'] == type_2) {
+                    if (data[i]['id'] == type_2) {
                         str += '<option  selected="selected"  value="' + data[i].id + '">' + data[i].name + '</option>'
                     } else if (data[i]['id'] == type_3) {
                         str += '<option  selected="selected"  value="' + data[i].id + '">' + data[i].name + '</option>'

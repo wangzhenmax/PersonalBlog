@@ -1,36 +1,18 @@
 <div class="sidebar">
     <div class="zhuanti">
-        <h2 class="hometitle">特别推荐</h2>
+        <h2 class="hometitle">特别推荐<?php echo $name;?></h2>
         <ul>
+            <?php foreach($sidebar['recom'] as $v):?>
             <li>
                 <i>
-                    <img src="/images/banner03.jpg">
+                    <img src="<?= $v['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
                 </i>
-                <p>帝国cms调用方法
+                <p><?=$v['title']?>
                     <span>
                         <a href="/">阅读</a>
                     </span>
                 </p>
-            </li>
-            <li>
-                <i>
-                    <img src="/images/b04.jpg">
-                </i>
-                <p>5.20 我想对你说
-                    <span>
-                        <a href="/">阅读</a>
-                    </span>
-                </p>
-            </li>
-            <li>
-                <i>
-                    <img src="/images/b05.jpg">
-                </i>
-                <p>个人博客，属于我的小世界！
-                    <span>
-                        <a href="/">阅读</a>
-                    </span>
-                </p>
+            <?php endforeach;?>
             </li>
         </ul>
     </div>
@@ -38,50 +20,31 @@
     <div class="tuijian">
         <h2 class="hometitle">点击排行</h2>
         <ul class="tjpic">
+            <a href="/">
             <i>
-                <img src="/images/toppic01.jpg">
+                <img src="<?=$sidebar['top'][0]['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
             </i>
             <p>
-                <a href="/">别让这些闹心的套路，毁了你的网页设计</a>
+                <a href="/"><?=$sidebar['top'][0]['title']?>
             </p>
+            </a>
         </ul>
         <ul class="sidenews">
+            <?php foreach($sidebar['top'] as $k=> $v):?>
+            <?php if($k!=0):?>
             <li>
+                <a href="/">
                 <i>
-                    <img src="/images/toppic01.jpg">
+                    <img src="<?= $v['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
                 </i>
                 <p>
-                    <a href="/">别让这些闹心的套路</a>
+                   <?=$v['title']?>
                 </p>
-                <span>2018-05-13</span>
+                <span><?=substr($v['created_at'],0,10)?></span>
+                </a>
             </li>
-            <li>
-                <i>
-                    <img src="/images/toppic02.jpg">
-                </i>
-                <p>
-                    <a href="/">给我模板PSD源文件，我给你设计HTML！</a>
-                </p>
-                <span>2018-05-13</span>
-            </li>
-            <li>
-                <i>
-                    <img src="/images/v1.jpg">
-                </i>
-                <p>
-                    <a href="/">别让这些闹心的套路，毁了你的网页设计</a>
-                </p>
-                <span>2018-05-13</span>
-            </li>
-            <li>
-                <i>
-                    <img src="/images/v2.jpg">
-                </i>
-                <p>
-                    <a href="/">给我模板PSD源文件，我给你设计HTML！</a>
-                </p>
-                <span>2018-05-13</span>
-            </li>
+            <?php endif;?>
+            <?php endforeach;?>
         </ul>
     </div>
     <div class="links">

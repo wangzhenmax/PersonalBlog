@@ -1,0 +1,50 @@
+<?php
+namespace models;
+class   Index extends Base
+{
+    // 设置这个模型对应的表
+    protected $table = 'blog';
+    // 主页文章
+    public function blogAll(){
+        return $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id where a.banner != 1 AND a.recommend != 1 AND is_show = 1 order by a.id desc ");
+    }
+    // 获取轮播图的文章
+    public function getBanner(){
+        return $data = $this->getAll("SELECT title , id, cover_big from $this->table where cover_big != '' AND banner = 1 AND is_show = 1 order by id desc limit 3");
+    }
+    // 获取推荐的文章
+    public function getRecom(){
+        return $data = $this->getAll("SELECT content,title , id ,cover_big ,cover_md from $this->table where recommend = 1 AND is_show = 1 order by id desc limit 3");
+    }
+    // 获取点击排行
+    public function getTop(){
+        return $data = $this->getAll("SELECT created_at ,title , id, cover_big ,cover_md from $this->table where is_show = 1 order by look desc limit 5");
+    }
+    // 简版主页
+    public function getAllBlog(){
+        return $data = $this->getAll("SELECT id, created_at ,title from $this->table where is_show = 1 order by created_at desc");
+    }
+    // 获取分类
+    public function getType($id){
+        return $data = $this->getAll("SELECT name ,id,cover ,parent_id from type where parent_id = {$id}");
+    }
+    // 获取分类文章
+    public function getCat_2($id){
+        return  $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id WHERE cat_2 = {$id} AND is_show = 1 order by a.id desc  ");
+    }
+    public function getCat_3($id){
+        return  $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id WHERE cat_3 = {$id} AND is_show = 1 order by a.id desc  ");
+    }
+    // 获取指定文章()
+    public function getBlog($id){
+        return $data = $this->getOne("SELECT * FROM $this->table where id = {$id} AND is_show = 1");
+    }
+    // 之获取文章的id 标题
+    public function getIdTitle($id){
+        return $data = $this->getOne("SELECT id , title FROM $this->table where id = {$id} AND is_show = 1");
+    }
+    // 获取相关文章
+    public function getRele($id){
+        return $data = $this->getAll("SELECT id , title from $this->table where cat_3 = {$id} AND is_show = 1 order by id desc limit 6");
+    }
+}

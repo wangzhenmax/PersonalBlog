@@ -4,25 +4,25 @@ var ETNGpager = function( srcName, dstName, cntPP, cntPS )
 {
 this.srcName = srcName;
 this.dstName = dstName;
-this.curP   = 1;//ƒ¨»œµ±«∞“≥Œ™µ⁄“ª“≥
-this.cntPP   = cntPP || 2;//ƒ¨»œ√ø“≥¡ΩÃıºÕ¬º
-this.cntPS   = cntPS || 3;//ƒ¨»œ√ø“≥œ‘ æ5∏ˆ∑÷“≥…œœ¬Œƒ
+this.curP   = 1;//ƒ¨ÔøΩœµÔøΩ«∞“≥Œ™ÔøΩÔøΩ“ª“≥
+this.cntPP   = cntPP || 2;//ƒ¨ÔøΩÔøΩ√ø“≥ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ¬º
+this.cntPS   = cntPS || 3;//ƒ¨ÔøΩÔøΩ√ø“≥ÔøΩÔøΩ æ5ÔøΩÔøΩÔøΩÔøΩ“≥ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 this.items   = [];
-this.showPNP = true;/*œ‘ æ…œœ¬“≥¡¥Ω”*/
-this.showType = true;/*ª¨∂Ø∑÷“≥*/
+this.showPNP = true;/*ÔøΩÔøΩ æÔøΩÔøΩÔøΩÔøΩ“≥ÔøΩÔøΩÔøΩÔøΩ*/
+this.showType = true;/*ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ“≥*/
 this.result   = {pagedata:[],pagebar:'',limit:[0,0],report:''};
-this.parse();/*◊‹ºÕ¬º ˝*/
+this.parse();/*ÔøΩ‹ºÔøΩ¬ºÔøΩÔøΩ*/
 }
 ETNGpager.prototype.page = function (){
-this.cntP = Math.ceil(this.cntR/this.cntPP);/*◊‹“≥ ˝*/
-this.cntS = Math.ceil(this.cntP/this.cntPS);/*◊‹∂Œ ˝*/
-this.curS = Math.ceil(this.curP/this.cntPS);/*µ±«∞∂Œ*/
-this.preP = this.curP -1;/*…œ“ª“≥*/
-this.nextP = this.curP +1;/*œ¬“ª“≥*/
-this.preS = this.curS -1;/*…œ“ª∂Œ*/
-this.nextS = this.curS +1;/*œ¬“ª∂Œ*/
-this.startR = (this.curP -1)*this.cntPP + 1;/*∆ ººÕ¬º*/
-this.endR = (this.curP*this.cntPP >this.cntR)?this.cntR:this.curP*this.cntPP;/*Ω· ¯ºÕ¬º*/
+this.cntP = Math.ceil(this.cntR/this.cntPP);/*ÔøΩÔøΩ“≥ÔøΩÔøΩ*/
+this.cntS = Math.ceil(this.cntP/this.cntPS);/*ÔøΩ‹∂ÔøΩÔøΩÔøΩ*/
+this.curS = Math.ceil(this.curP/this.cntPS);/*ÔøΩÔøΩ«∞ÔøΩÔøΩ*/
+this.preP = this.curP -1;/*ÔøΩÔøΩ“ª“≥*/
+this.nextP = this.curP +1;/*ÔøΩÔøΩ“ª“≥*/
+this.preS = this.curS -1;/*ÔøΩÔøΩ“ªÔøΩÔøΩ*/
+this.nextS = this.curS +1;/*ÔøΩÔøΩ“ªÔøΩÔøΩ*/
+this.startR = (this.curP -1)*this.cntPP + 1;/*ÔøΩÔøΩ ºÔøΩÔøΩ¬º*/
+this.endR = (this.curP*this.cntPP >this.cntR)?this.cntR:this.curP*this.cntPP;/*ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ¬º*/
 this.result['pagedata']=[];
 if(this.showType){
 this.perSide = Math.floor(this.cntPS/2);
@@ -33,15 +33,15 @@ this.startP   = (this.curS-1)*this.cntPS+1;
 this.endP   = (this.curS*this.cntPS>this.cntP)?this.cntP:(this.curS*this.cntPS);
 }
 for(var i = this.startP;i<=this.endP;i++){
-this.result['pagedata'].push((i==this.curP)?'<a  href="#" class="curPage">'+i+'</a>':'<a  href="#" onclick="page('+i+')">'+i+'</a>');
+this.result['pagedata'].push((i==this.curP)?'<a  href="#" class="curPage">Á¨¨'+i+'È°µ</a>':'<a  href="#" onclick="page('+i+')">'+i+'</a>');
 }
 if(this.showPNP){
-if(this.curP>1)this.result['pagedata'].unshift('<a  href="#" onclick="page('+(this.curP-1)+')">…œ“ª“≥</a>');
-if(this.curP<this.cntP)this.result['pagedata'].push('<a  href="#" onclick="page('+(this.curP+1)+')">œ¬“ª“≥</a>');
+if(this.curP>1)this.result['pagedata'].unshift();
+if(this.curP<this.cntP)this.result['pagedata'].push();
 }
 this.result['pagebar'] = this.result['pagedata'].join('&nbsp;&nbsp;');
 this.result['limit'] = [this.startR,this.endR];
-this.result['report'] ='<a class="allpage"><b>'+this.cntR+'</b></a>&nbsp;&nbsp;' ;
+this.result['report'] ='<a class="allpage"><b>ÊÄª/'+this.cntR+'Êù°</b></a>&nbsp;&nbsp;' ;
 }
 ETNGpager.prototype.parse = function (){
 var obj = document.getElementById(this.srcName);

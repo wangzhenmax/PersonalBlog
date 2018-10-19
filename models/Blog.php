@@ -7,11 +7,8 @@ class Blog extends Base
     // 设置这个模型对应的表
     protected $table = 'blog';
     // 设置允许接收的字段
-    protected $fillable = ['title','type','introduce','content',"user_id","cat_1","cat_2","cat_3","is_show"];
-    public function blogAll(){
-        $data = $this->getAll("SELECT * from $this->table ");
-        return $data;
-    }
+    protected $fillable = ['title','type','introduce','content',"user_id","cat_1","cat_2","cat_3","is_show","banner","recommend"];
+   
     // 插入 / 修改前 
     public function _before_write(){
         $uploader = \libs\Uploader::make();
