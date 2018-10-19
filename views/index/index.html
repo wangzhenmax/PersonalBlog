@@ -46,26 +46,43 @@
     <!--blogsbox begin-->
     <div class="blogsbox">
       <?php foreach($data as $v){;?>
-      <?php if( $v['cover_md'] == null && $v['cover_big'] == null && $v['blog_img'] == null){; ?>
-      <div class="blogs" data-scroll-reveal="enter bottom over 1s">
-        <h3 class="blogtitle">
-          <a href="/index/info?id=<?=$v['id']?>" target="_blank"><?=$v['title']?></a>
-        </h3>
-        <p class="blogtext"><?=$v['introduce']?></p>
-        <div class="bloginfo">
-          <ul>
-            <li class="author">
-              宋东野结衣
-            </li>
-            <li class="lmname">
-              <a href="/index/info?id=<?=$v['id']?>"><?=$v['blogType']?></a>
-            </li>
-            <li class="timer"><?=substr($v['created_at'],0,10)?></li>
-            <li class="view"><?=$v['look']?>已阅读</li>
-            <li class="like"><?=$v['like']?></li>
-          </ul>
-        </div>
-      </div>
+      <?php if(isset($v['blog_img'])&& $v['blog_img'] != null){; ?>
+            <div class="blogs" data-scroll-reveal="enter bottom over 1s">
+              <h3 class="blogtitle">
+                <a href="/index/info?id=<?=$v['id']?>" target="_blank">
+                  <?=$v['title']?>!</a>
+              </h3>
+              <span class="blogpic">
+                <a href="/index/info?id=<?=$v['id']?>" title="">
+                  <img src="<?=$v['blog_img']?>" alt="">
+                </a>
+              </span>
+              <p class="blogtext">
+                <?=$v['introduce']?>
+              </p>
+              <div class="bloginfo">
+                <ul>
+                  <li class="author">
+                    宋东野结衣
+                  </li>
+                  <li class="lmname">
+                    <a href="/index/info?id=<?=$v['id']?>">
+                      <?=$v['blogType']?>
+                    </a>
+                  </li>
+                  <li class="timer">
+                    <?=substr($v['created_at'],0,10)?>
+                  </li>
+                  <li class="view">
+                    <span>
+                      <?=$v['look']?>
+                    </span>已阅读</li>
+                  <li class="like">
+                    <?=$v['like']?>
+                  </li>
+                </ul>
+              </div>
+            </div>
       <?php }elseif($v['cover_big']!=null){;?>
         <div class="blogs" data-scroll-reveal="enter bottom over 1s">
           <h3 class="blogtitle"><a href="/index/info?id=<?=$v['id']?>" target="_blank"><?=$v['title']?></a></h3>
@@ -117,13 +134,9 @@
         <div class="blogs" data-scroll-reveal="enter bottom over 1s">
           <h3 class="blogtitle">
             <a href="/index/info?id=<?=$v['id']?>" target="_blank">
-              <?=$v['title']?>!</a>
-          </h3>
-          <span class="blogpic">
-            <a href="/index/info?id=<?=$v['id']?>" title="">
-              <img src="<?=$v['blog_img'][0]?>" alt="">
+              <?=$v['title']?>
             </a>
-          </span>
+          </h3>
           <p class="blogtext">
             <?=$v['introduce']?>
           </p>
@@ -133,22 +146,21 @@
                 宋东野结衣
               </li>
               <li class="lmname">
-                <a href="/index/info?id=<?=$v['id']?>"><?=$v['blogType']?></a>
+                <a href="/index/info?id=<?=$v['id']?>">
+                  <?=$v['blogType']?>
+                </a>
               </li>
               <li class="timer">
                 <?=substr($v['created_at'],0,10)?>
               </li>
               <li class="view">
-                <span>
-                  <?=$v['look']?></span>已阅读</li>
+                <?=$v['look']?>已阅读</li>
               <li class="like">
                 <?=$v['like']?>
               </li>
             </ul>
           </div>
         </div>
-
-
       <?php } } ;?>
         <div class="blogs" data-scroll-reveal="enter bottom over 1s">
           <h3 class="blogtitle">
@@ -258,9 +270,7 @@
 
     </div>
     <!--blogsbox end-->
-<?=view("comment.sidebar",[
-'sidebar'=>$sidebar
-])?>
+<?=view("comment.sidebarHtml")?>
   </article>
 <?=view("comment.footer")?>
   <a href="#" class="cd-top">Top</a>

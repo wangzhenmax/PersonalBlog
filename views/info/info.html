@@ -3,7 +3,7 @@
 <?php view("comment.header")?>
   <article>
     <h1 class="t_nav">
-      <span>您现在的位置是：首页 > 慢生活 > 程序人生</span>
+      <span>您现在的位置是：首页 > <?=$data['current']['cat2']?> > <?=$data['current']['cat3']?></span>
       <a href="/index/index" class="n1">网站首页</a>
       <a href="#" class="n2">文章详情</a>
     </h1>
@@ -26,8 +26,8 @@
         <div class="tags">
 
 
-          <a href="/" target="_blank"></a> &nbsp;
-          <a href="/" target="_blank"></a>
+          <a href="/" target="_blank"><?=$data['current']['cat2']?></a> &nbsp;
+          <a href="/" target="_blank"><?=$data['current']['cat3']?></a>
 
 
         </div>
@@ -114,9 +114,7 @@
         </ul>
       </div>
     </div>
-<?=view("comment.sidebar",[
-'sidebar'=>$sidebar
-])?>
+<?=view("comment.sidebarHtml")?>
   </article>
 <?php view("comment.footer")?>
   <a href="#" class="cd-top">Top</a>

@@ -37,14 +37,26 @@ class   Index extends Base
     }
     // 获取指定文章()
     public function getBlog($id){
-        return $data = $this->getOne("SELECT * FROM $this->table where id = {$id} AND is_show = 1");
+        return $data = $this->getOne("SELECT a.* , b1.name cat2 , b2.name cat3  FROM $this->table as a  left join type as b1 on a.cat_2 = b1.id left join type as b2 on a.cat_3 = b2.id   where a.id = {$id} AND a.is_show = 1");
     }
-    // 之获取文章的id 标题
+    // 获取文章的id 标题
     public function getIdTitle($id){
         return $data = $this->getOne("SELECT id , title FROM $this->table where id = {$id} AND is_show = 1");
     }
     // 获取相关文章
     public function getRele($id){
         return $data = $this->getAll("SELECT id , title from $this->table where cat_3 = {$id} AND is_show = 1 order by id desc limit 6");
+    }
+    // 获取前端页面的文章
+    public function getTypeWeb(){
+        return $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id WHERE cat_2 = 2 AND is_show = 1 order by a.id desc  ");
+    }
+    // 获取前端页面的文章
+    public function getTypePhp(){
+        return $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id WHERE cat_2 = 3 AND is_show = 1 order by a.id desc  ");
+    }
+    // 增加访问量
+    public function addLook($id){
+        $data = $this->_db->prepare("UPDATE $this->table set look =  look + 1 where id = {$id} AND is_show = 1"); return $data->execute();
     }
 }

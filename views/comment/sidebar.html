@@ -1,18 +1,20 @@
 <div class="sidebar">
     <div class="zhuanti">
-        <h2 class="hometitle">特别推荐<?php echo $name;?></h2>
+        <h2 class="hometitle">特别推荐
+        </h2>
         <ul>
             <?php foreach($sidebar['recom'] as $v):?>
             <li>
                 <i>
-                    <img src="<?= $v['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
+                    <img src="<?= $v['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>" style="width:305px;height:170px">
                 </i>
-                <p><?=$v['title']?>
-                    <span>
-                        <a href="/">阅读</a>
-                    </span>
+                <p>
+                    <?=$v['title']?>
+                        <span>
+                            <a href="/index/info?id=<?=$v['id']?>">阅读</a>
+                        </span>
                 </p>
-            <?php endforeach;?>
+                <?php endforeach;?>
             </li>
         </ul>
     </div>
@@ -20,27 +22,28 @@
     <div class="tuijian">
         <h2 class="hometitle">点击排行</h2>
         <ul class="tjpic">
-            <a href="/">
-            <i>
-                <img src="<?=$sidebar['top'][0]['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
-            </i>
-            <p>
-                <a href="/"><?=$sidebar['top'][0]['title']?>
-            </p>
-            </a>
+            <a href="/index/info?id=<?=$sidebar['top'][0]['id']?>">
+                <i>
+                    <img src="<?= $sidebar['top'][0]['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big'] : $v['blog_img'] : $sidebar['top'][0]['cover_md'] ?>">
+                </i>
+                <p>
+                    <?=$sidebar['top'][0]['title']?>
+                </p>
         </ul>
         <ul class="sidenews">
             <?php foreach($sidebar['top'] as $k=> $v):?>
             <?php if($k!=0):?>
             <li>
-                <a href="/">
-                <i>
-                    <img src="<?= $v['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
-                </i>
-                <p>
-                   <?=$v['title']?>
-                </p>
-                <span><?=substr($v['created_at'],0,10)?></span>
+                <a href="/index/info?id=<?=$v['id']?>">
+                    <i>
+                        <img src="<?= $v['cover_md'] == null ? $v['cover_big']!=null ? $v['cover_big']:$v['blog_img'] : $v['cover_md']?>">
+                    </i>
+                    <p>
+                        <?=$v['title']?>
+                    </p>
+                    <span>
+                        <?=substr($v['created_at'],0,10)?>
+                    </span>
                 </a>
             </li>
             <?php endif;?>
