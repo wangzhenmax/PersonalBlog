@@ -17,6 +17,11 @@ class IndexController {
         $pre =$this->getPre($id);
         $next = $this->getNext($id);
         $relevant = $model->getRele($data['cat_3']);
+        foreach($relevant as $k=>$v){
+            if($id == $relevant[$k]['id']){
+                unset($relevant[$k]);
+            }
+        }
         $data = [
             "pre" => $pre?: null,
             "current" => $data?: null,
@@ -62,7 +67,10 @@ class IndexController {
             $cat_2 = $_GET['type2'];
            if($cat_2 == 2){
                view("html/web");
-           }else{
+           }else if($cat_2==16){
+               view("html/qita");
+           }
+           else{
                view("html/php");
            }
         }

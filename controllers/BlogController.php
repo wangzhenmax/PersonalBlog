@@ -5,7 +5,7 @@ use models\Blog;
 use models\Admin;
 use models\Index;
 
-class BlogController  extends BaseController {
+class BlogController{
     // 列表页
     public function index()
     {
@@ -82,6 +82,7 @@ class BlogController  extends BaseController {
         $this->sidebarHtml();
         $this->webHtml();
         $this->phpHtml();
+        $this->qitaHtml();
         $model = new Index;
         $data = $model->blogAll();
         $banner = $model->getBanner();
@@ -105,7 +106,7 @@ class BlogController  extends BaseController {
         ]);
         $str = ob_get_contents();
         file_put_contents(ROOT.'views/html/index.html',$str);
-       
+        redirect('/');
     }
     public function indexJianHtml(){
          $model = new Index;
@@ -134,6 +135,7 @@ class BlogController  extends BaseController {
         $str = ob_get_contents();
         file_put_contents(ROOT."views/comment/sidebarHtml.html",$str);
     }
+     //  获取前端的文章
      public function webHtml(){
          $model = new Index;
          $data = $model->getTypeWeb();
@@ -156,6 +158,7 @@ class BlogController  extends BaseController {
         $str = ob_get_contents();
         file_put_contents(ROOT."views/html/web.html",$str);
      }
+     //  获取后端的文章
      public function phpHtml(){
          $model = new Index;
          $data = $model->getTypePhp();
@@ -178,6 +181,30 @@ class BlogController  extends BaseController {
         ]);
         $str = ob_get_contents();
         file_put_contents(ROOT."views/html/php.html",$str);
+     }
+     //  获取其他的文章
+     public function qitaHtml(){
+         $model = new Index;
+         $data = $model->getTypeQita();
+          // 让没有图片的文章 产生两种样式 1 无图 2 从内容中取出图
+         foreach($data as $k=> $v){
+             if($v['cover_md']==null && $v['cover_big']==null){
+                $num = floor(rand(0,1));
+                if($num==1){
+                    $img = $this->getImgs($v['content'],0);
+                    $data[$k]['blog_img'] = $img;
+                }
+            }
+            if($v['cover_md']!=null){
+            $data[$k]['cover_md'] = json_decode($v['cover_md']);
+            };
+        }
+         ob_start();
+         view('list/list',[
+              'data'=>$data
+        ]);
+        $str = ob_get_contents();
+        file_put_contents(ROOT."views/html/qita.html",$str);
      }
            // 判断是否有封面
     public function getImg($data){

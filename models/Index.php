@@ -18,7 +18,7 @@ class   Index extends Base
     }
     // 获取点击排行
     public function getTop(){
-        return $data = $this->getAll("SELECT created_at ,title , id, cover_big ,cover_md from $this->table where is_show = 1 order by look desc limit 5");
+        return $data = $this->getAll("SELECT content,title , id, cover_big ,cover_md from $this->table where is_show = 1 order by look desc limit 5");
     }
     // 简版主页
     public function getAllBlog(){
@@ -54,6 +54,10 @@ class   Index extends Base
     // 获取前端页面的文章
     public function getTypePhp(){
         return $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id WHERE cat_2 = 3 AND is_show = 1 order by a.id desc  ");
+    }
+    // 获取其他的文章
+    public function getTypeQita(){
+        return $data = $this->getAll("SELECT a.*, b.name as blogType  from $this->table as a left join type as b on a.cat_3 = b.id WHERE cat_2 = 16 AND is_show = 1 order by a.id desc  ");
     }
     // 增加访问量
     public function addLook($id){

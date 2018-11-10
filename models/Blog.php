@@ -148,7 +148,7 @@ class Blog extends Base
         
         /***************** 排序 ********************/
         // // 默认排序
-        $odby = 'created_at';
+        $odby = 'id';
         $odway = 'desc';
 
         if(isset($_GET['odby']) && $_GET['odby'] == 'look')
