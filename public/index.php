@@ -14,6 +14,7 @@ session_start();
 // die;
 
 // 定义常量
+define('SLA',DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__) . '/../');
 
 
