@@ -43,15 +43,24 @@ if(php_sapi_name() == 'cli')
 }
 else
 {
-    if( isset($_SERVER['PATH_INFO']) )
+    if( isset($_SERVER['REQUEST_URI']) &&  $_SERVER['REQUEST_URI']!="/")
     {
-        $pathInfo = $_SERVER['PATH_INFO'];
-        // 根据 / 转成数组
+        $pathInfo = substr($_SERVER['REQUEST_URI'],1);
+	
+	// 根据 / 转成数组
         $pathInfo = explode('/', $pathInfo);
 
         // 得到控制器名和方法名 ：
-        $controller = ucfirst($pathInfo[1]) . 'Controller';
-        $action = $pathInfo[2];
+        $controller = ucfirst($pathInfo[0]) . 'Controller';
+	if(isset($pathInfo[1])){
+        $index = strpos("$pathInfo[1]","?");
+	if($index)
+        $action = substr( $pathInfo[1],0,$index);
+	else
+	$action = $pathInfo[1];
+	}else {
+	$action = 'index';
+	}
     }
     else
     {
@@ -60,13 +69,8 @@ else
         $action = 'index';
     }
 }
-
-
-
-// 为控制器添加命名空间
+//为控制器添加命名空间
 $fullController = 'controllers\\'.$controller;
-
-
 $_C = new $fullController;
 $_C->$action();
 
