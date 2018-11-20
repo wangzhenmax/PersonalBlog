@@ -10,11 +10,11 @@ class   Index extends Base
     }
     // 获取轮播图的文章
     public function getBanner(){
-        return $data = $this->getAll("SELECT title , id, cover_big from $this->table where cover_big != '' AND banner = 1 AND is_show = 1 order by id desc limit 3");
+        return $data = $this->getAll("SELECT title , id, cover_big from $this->table where cover_big != ''   AND banner = 1 AND is_show = 1 order by id desc ");
     }
     // 获取推荐的文章
     public function getRecom(){
-        return $data = $this->getAll("SELECT content,title , id ,cover_big ,cover_md from $this->table where recommend = 1 AND is_show = 1 order by id desc limit 3");
+        return $data = $this->getAll("SELECT content,title , id ,cover_big ,cover_md from $this->table where recommend = 1 AND is_show = 1 order by id desc ");
     }
     // 获取点击排行
     public function getTop(){

@@ -17,6 +17,15 @@ class BlogController extends BaseController{
             'btns'=>$data['btns']
         ]);
     }
+    // 轮播 推荐
+    public function lunbo(){
+        $model = new Index;
+        $data['lunbo'] = $model->getBanner();
+        $data['tuijian'] = $model->getRecom();
+        view('blog/lunbo',[
+            'data'=>$data
+        ]);
+    }
     // 显示添加的表单
     public function create()
     {
@@ -34,7 +43,6 @@ class BlogController extends BaseController{
         $id = $_SESSION['id'];
         $data = $model->insert($id);
         if($data){
-            $this->indexHtml();
             redirect('/blog/index');
         }else{
             echo "失败!";
@@ -63,7 +71,6 @@ class BlogController extends BaseController{
         $model = new Blog;
         $model->fill($_POST);
         $data = $model->update($id);
-         $this->indexHtml();
         redirect('/blog/index');
     }
 
@@ -72,7 +79,6 @@ class BlogController extends BaseController{
     {
         $model = new Blog;
         $model->delete($_GET['id']);
-         $this->indexHtml();
         redirect('/blog/index');
     }
 
