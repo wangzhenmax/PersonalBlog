@@ -189,4 +189,5 @@ class Blog extends Base
             'data' => $data,
         ];
     }
+
 }

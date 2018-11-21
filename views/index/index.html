@@ -1,4 +1,9 @@
   <?php view("comment.header")?>
+  <style>
+    h1{
+      color: #eeff00
+    }
+  </style>
   <article>
     <!--banner begin-->
     <div class="picsbox">
@@ -78,7 +83,7 @@
                       <?=$v['look']?>
                     </span>已阅读</li>
                   <li class="like">
-                    <?=$v['like']?>
+                    <?=$v['likes']?>
                   </li>
                 </ul>
               </div>
@@ -94,7 +99,7 @@
               <li class="lmname"><a href="/index/info?id=<?=$v['id']?>"><?=$v['blogType']?></a></li>
               <li class="timer"><?=substr($v['created_at'],0,10)?></li>
               <li class="view"><span><?=$v['look']?></span>已阅读</li>
-              <li class="like"><?=$v['like']?></li>
+              <li class="like"><?=$v['likes']?></li>
             </ul>
           </div>
         </div>
@@ -126,7 +131,7 @@
             <li class="timer"><?=substr($v['created_at'],0,10)?></li>
             <li class="view">
               <span><?=$v['look']?></span>已阅读</li>
-            <li class="like"><?=$v['like']?></li>
+            <li class="like"><?=$v['likes']?></li>
           </ul>
         </div>
       </div>
@@ -156,7 +161,7 @@
               <li class="view">
                 <?=$v['look']?>已阅读</li>
               <li class="like">
-                <?=$v['like']?>
+                <?=$v['likes']?>
               </li>
             </ul>
           </div>

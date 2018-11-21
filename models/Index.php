@@ -63,4 +63,8 @@ class   Index extends Base
     public function addLook($id){
         $data = $this->_db->prepare("UPDATE $this->table set look =  look + 1 where id = {$id} AND is_show = 1"); return $data->execute();
     }
+    // ajax 点赞
+    public function ajaxZan($id){
+        $data = $this->_db->prepare("UPDATE $this->table set likes =  likes + 1 where id = {$id} AND is_show = 1"); return $data->execute();
+    }
 }

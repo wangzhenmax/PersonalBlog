@@ -2,6 +2,13 @@
 namespace controllers;
 use models\Index;
 class IndexController {
+    // ajax 点赞
+    public function ajaxZan(){
+         $model = new Index;
+         $id = $_GET['id'];
+         var_dump($model->ajaxZan($id));
+    }
+
     public function index(){
       view("html/index");
     }

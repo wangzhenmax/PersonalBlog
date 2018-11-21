@@ -6,6 +6,7 @@ use models\Admin;
 use models\Index;
 
 class BlogController extends BaseController{
+    
     // 列表页
     public function index()
     {
