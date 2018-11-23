@@ -95,15 +95,19 @@ class BlogController extends BaseController{
         $banner = $model->getBanner();
         //获取排行榜/特别推荐
         foreach($data as $k=> $v){
-            if($v['cover_big']==null) {
-                $data[$k]['cover_md'] = json_decode($v['cover_md']);
-            }
-            elseif($v['cover_md']==null && $v['cover_big']==null){
+            if($v['cover_big']=='') {
+                if($v['cover_md']!=''){
+                     $data[$k]['cover_md'] = json_decode($v['cover_md']);
+                echo 0;
+                }else{
+                     echo 2;
                 $num = floor(rand(0,1));
-                if($num==1){
-                    $img = $this->getImgs($v['content'],0);
+                    if($num==1){
+                        $img = $this->getImgs($v['content'],0);
+                        $data[$k]['blog_img'] = $img;
+                    }
                 }
-            } 
+            }
         }
         ob_start();
         view("index.index",[
