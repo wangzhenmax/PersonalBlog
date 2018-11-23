@@ -74,6 +74,14 @@ class BlogController extends BaseController{
         $data = $model->update($id);
         redirect('/blog/index');
     }
+    public function aa()
+    {
+        $id = $_GET['id'];
+        $model = new Blog;
+        $model->fill($_POST);
+        $data = $model->update($id);
+        redirect('/blog/index');
+    }
 
     // 删除
     public function delete()
@@ -82,7 +90,6 @@ class BlogController extends BaseController{
         $model->delete($_GET['id']);
         redirect('/blog/index');
     }
-
 
 
     public function indexHtml(){
