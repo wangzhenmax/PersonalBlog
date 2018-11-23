@@ -82,13 +82,7 @@ class BlogController extends BaseController{
         $model->delete($_GET['id']);
         redirect('/blog/index');
     }
-     // 删除
-    public function aa()
-    {
-        $model = new Blog;
-        $model->delete($_GET['id']);
-        redirect('/blog/index');
-    }
+
 
 
     public function indexHtml(){
