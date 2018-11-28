@@ -8,7 +8,7 @@ $pdo = new \PDO("mysql:host=118.89.221.52;dbname=blog",'root','123456');
 
 $client = new \Predis\Client([
     'scheme' => 'tcp',
-    'host'   => 'localhost',
+    'host'   => '118.89.221.52',
     'port'   => 6379,
 ]);
 
@@ -53,7 +53,6 @@ while(true)
             $pdo->exec($sql);
             // 删除本地文件
             @unlink($file);
-        
             echo 'ok';
         }
     }
@@ -76,7 +75,6 @@ while(true)
                 $new = $domain.'/'.$ret['key'];
                 $coverMd[] = $new;
                 @unlink($file);
-          
                 echo 'ok';
             }
         }

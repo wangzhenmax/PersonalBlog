@@ -58,7 +58,7 @@ class Blog extends Base
     public function _after_write(){
         $client = new \Predis\Client([
             'scheme' => 'tcp',
-            'host'   => 'localhost',
+            'host'   => '118.89.221.52',
             'port'   => 6379,
         ]);
         if($this->data['cover_big']){
@@ -67,7 +67,6 @@ class Blog extends Base
             'id' => $this->data['id'],
             ];
              $client->lpush('jxshop:niqui', serialize($data));
-             die(1);
         }
         if($this->data['cover_md']){
              $data = [
@@ -75,7 +74,6 @@ class Blog extends Base
             'id' => $this->data['id'],
             ];
              $client->lpush('jxshop:niqui', serialize($data));
-              die(1);
         }
     }
 
