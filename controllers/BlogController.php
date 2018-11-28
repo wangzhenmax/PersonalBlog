@@ -74,14 +74,7 @@ class BlogController extends BaseController{
         $data = $model->update($id);
         redirect('/blog/index');
     }
-    public function aa()
-    {
-        $id = $_GET['id'];
-        $model = new Blog;
-        $model->fill($_POST);
-        $data = $model->update($id);
-        redirect('/blog/index');
-    }
+
 
     // 删除
     public function delete()
@@ -106,9 +99,7 @@ class BlogController extends BaseController{
             if($v['cover_big']=='') {
                 if($v['cover_md']!=''){
                      $data[$k]['cover_md'] = json_decode($v['cover_md']);
-                echo 0;
                 }else{
-                     echo 2;
                 $num = floor(rand(0,1));
                     if($num==1){
                         $img = $this->getImgs($v['content'],0);

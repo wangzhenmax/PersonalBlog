@@ -17,7 +17,6 @@ session_start();
 define('SLA',DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__) . '/../');
 
-
 // 引入 composer 自动加载文件
 // if($_SERVER['REQUEST_METHOD'] == 'POST')
 // {

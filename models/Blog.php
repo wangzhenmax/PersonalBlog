@@ -52,6 +52,36 @@ class Blog extends Base
                     }
         }
     }
+
+
+        // 插入 / 修改后
+    public function _after_write(){
+        $client = new \Predis\Client([
+            'scheme' => 'tcp',
+            'host'   => 'localhost',
+            'port'   => 6379,
+        ]);
+        if($this->data['cover_big']){
+            $data = [
+            'cover_big' =>$this->data['cover_big'],
+            'id' => $this->data['id'],
+            ];
+             $client->lpush('jxshop:niqui', serialize($data));
+             die(1);
+        }
+        if($this->data['cover_md']){
+             $data = [
+            'cover_md' => $this->data['cover_md'],
+            'id' => $this->data['id'],
+            ];
+             $client->lpush('jxshop:niqui', serialize($data));
+              die(1);
+        }
+    }
+
+
+
+
       // 删除原图片
     public function _delete_img(){
         if(isset($_GET['id'])){
@@ -107,10 +137,7 @@ class Blog extends Base
     }
 
 
-    // 插入 / 修改后
-    public function _after_write(){
 
-    }
 
     // search
     public function search()
