@@ -8,60 +8,19 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
 {
     public static $files = array (
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'Z' => 
-        array (
-            'Zxing\\' => 6,
-        ),
-        'Y' => 
-        array (
-            'Yansongda\\Supports\\' => 19,
-            'Yansongda\\Pay\\' => 14,
-        ),
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Component\\PropertyAccess\\' => 33,
-            'Symfony\\Component\\Process\\' => 26,
-            'Symfony\\Component\\OptionsResolver\\' => 34,
-            'Symfony\\Component\\Inflector\\' => 28,
-            'Symfony\\Component\\HttpFoundation\\' => 33,
-            'Spatie\\TemporaryDirectory\\' => 26,
-            'Spatie\\Image\\' => 13,
-            'Spatie\\ImageOptimizer\\' => 22,
-        ),
         'Q' => 
         array (
             'Qiniu\\' => 6,
         ),
         'P' => 
         array (
-            'Psr\\SimpleCache\\' => 16,
-            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Predis\\' => 7,
-            'PhpOffice\\PhpSpreadsheet\\' => 25,
-        ),
-        'M' => 
-        array (
-            'MyCLabs\\Enum\\' => 13,
-            'Monolog\\' => 8,
-        ),
-        'L' => 
-        array (
-            'League\\Glide\\' => 13,
-            'League\\Flysystem\\' => 17,
         ),
         'I' => 
         array (
@@ -70,85 +29,13 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
-        ),
-        'F' => 
-        array (
-            'Flc\\Dysms\\' => 10,
-        ),
-        'E' => 
-        array (
-            'Endroid\\QrCode\\' => 15,
-            'Endroid\\Installer\\' => 18,
-            'Egulias\\EmailValidator\\' => 23,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Zxing\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib',
-        ),
-        'Yansongda\\Supports\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yansongda/supports/src',
-        ),
-        'Yansongda\\Pay\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yansongda/pay/src',
-        ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
-        'Symfony\\Component\\PropertyAccess\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/property-access',
-        ),
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
-        'Symfony\\Component\\OptionsResolver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/options-resolver',
-        ),
-        'Symfony\\Component\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/inflector',
-        ),
-        'Symfony\\Component\\HttpFoundation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/http-foundation',
-        ),
-        'Spatie\\TemporaryDirectory\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/temporary-directory/src',
-        ),
-        'Spatie\\Image\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/image/src',
-        ),
-        'Spatie\\ImageOptimizer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spatie/image-optimizer/src',
-        ),
         'Qiniu\\' => 
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
-        ),
-        'Psr\\SimpleCache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
-        ),
-        'Psr\\Log\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -158,26 +45,6 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         array (
             0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
-        'PhpOffice\\PhpSpreadsheet\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
-        ),
-        'MyCLabs\\Enum\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
-        ),
-        'Monolog\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
-        ),
-        'League\\Glide\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/glide/src',
-        ),
-        'League\\Flysystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/flysystem/src',
-        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -185,30 +52,6 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
-        'Flc\\Dysms\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/flc/dysms/src',
-        ),
-        'Endroid\\QrCode\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/endroid/qr-code/src',
-        ),
-        'Endroid\\Installer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/endroid/installer/src',
-        ),
-        'Egulias\\EmailValidator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
     );
 
@@ -218,20 +61,6 @@ class ComposerStaticInit5308285e805f3d5b7e3b5f1eeec9e311
             'HTMLPurifier' => 
             array (
                 0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
-            ),
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Lexer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
-            ),
-        ),
-        'B' => 
-        array (
-            'BaconQrCode' => 
-            array (
-                0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
             ),
         ),
     );
