@@ -1,2 +1,2 @@
 <?php
- exec('get pull');
+ exec('git pull');
