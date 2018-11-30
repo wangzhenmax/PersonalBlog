@@ -1,1 +1,1 @@
-exec('get pull')
+exec('get pull');
