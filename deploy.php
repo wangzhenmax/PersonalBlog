@@ -1,1 +1,0 @@
-exec('get pull');
