@@ -4,25 +4,10 @@
 // // 设置 redis 服务器的地址、端
 // ini_set('session.save_path', 'tcp://127.0.0.1:6379?database=3');
 // ini_set('session.gc_maxlifetime', 3600);
-
 session_start();
-
-// phpinfo();
-
-// $_SESSION['name'] = 'tom';
-// var_dump($_SESSION);
-// die;
-
 // 定义常量
 define('SLA',DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__) . '/../');
-
-// 引入 composer 自动加载文件
-// if($_SERVER['REQUEST_METHOD'] == 'POST')
-// {
-//     if(!isset($_POST['token']) || $_POST['token'] != $_SESSION['token'])
-//         die('违法操作！');
-// }
 require(ROOT.'vendor/autoload.php');
 // 实现类的自动加载
 function autoload($class)
