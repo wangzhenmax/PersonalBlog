@@ -1,6 +1,6 @@
 
 // <!--
-var pager = new ETNGpager('list','list2',24,10);//24Ϊÿҳ��ʾ������10Ϊ������ʾ�˵���
+var pager = new ETNGpager('list','list2',12,10);//24Ϊÿҳ��ʾ������10Ϊ������ʾ�˵���
 var curP = 1;
 page()
 function page(i){

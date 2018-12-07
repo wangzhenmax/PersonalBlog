@@ -1,5 +1,5 @@
 
-<!--
+// <!--
 var ETNGpager = function( srcName, dstName, cntPP, cntPS )
 {
 this.srcName = srcName;
