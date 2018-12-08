@@ -67,4 +67,8 @@ class   Index extends Base
     public function ajaxZan($id){
         $data = $this->_db->prepare("UPDATE $this->table set likes =  likes + 1 where id = {$id} AND is_show = 1"); return $data->execute();
     }
+    // 获取所有文章制作静态化
+    public function getAllBlogHtml(){
+        return $data = $this->getAll("SELECT id from  $this->table where is_show = 1 order by id desc");
+    }
 }

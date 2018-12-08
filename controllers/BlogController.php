@@ -91,6 +91,7 @@ class BlogController extends BaseController{
         $this->webHtml();
         $this->phpHtml();
         $this->qitaHtml();
+        $this->contentHtml();
         $model = new Index;
         $data = $model->blogAll();
         $banner = $model->getBanner();
@@ -117,6 +118,69 @@ class BlogController extends BaseController{
         file_put_contents(ROOT.'views/html/index.html',$str);
         redirect('/');
     }
+
+    // 所有文章静态化
+     public function contentHtml()
+    {
+        $model = new Index;
+        $arr = $model->getAllBlogHtml();
+        mkdir(ROOT."views/html/blogs",777,true);
+        foreach($arr as $v){
+            $id = $v['id'];
+            $data = $model->getBlog($id);
+            $add = $model->addLook($id);
+            if(!$data)
+                return false;
+            $pre =$this->getPre($id);
+            $next = $this->getNext($id);
+            $relevant = $model->getRele($data['cat_3']);
+            foreach($relevant as $k=>$v){
+                if($id == $relevant[$k]['id']){
+                    unset($relevant[$k]);
+                }
+            }
+            $data = [
+                "pre" => $pre?: null,
+                "current" => $data?: null,
+                "next" => $next?: null,
+                "relevant"=>$relevant ? :null,
+            ];
+            ob_start();
+            view('info/info',[
+                "data"=>$data
+            ]);
+            $str = ob_get_contents();
+            file_put_contents(ROOT."views/html/blogs/{$id}.html",$str);
+        }
+        
+    }
+    // 如果下一条没有 就往上一直拿
+    public function getNext($id){
+        $model = new Index;
+        if($model->getLastOne() > $id )
+        {
+            $data = $model->getIdTitle($id-0+1);
+            if(!$data){
+                return $this->getNext($id-0+1);
+            }
+            return $data;
+        }
+        return false;
+    }
+    // 如果上一条没有 就往上一直拿
+     public function getPre($id){
+        $model = new Index;
+        $data = $model->getIdTitle($id-1);
+        if(!$data){
+            if($id == 0)
+                return false;
+            return $this->getPre($id-1);
+        }
+        return $data;
+    }
+
+
+    // 简版 html
     public function indexJianHtml(){
          $model = new Index;
         $data = $model->getAllBlog();

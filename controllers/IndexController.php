@@ -16,28 +16,7 @@ class IndexController {
      public function info()
     {
         $id = $_GET['id'];
-        $model = new Index;
-        $data = $model->getBlog($id);
-        $add = $model->addLook($id);
-        if(!$data)
-            return false;
-        $pre =$this->getPre($id);
-        $next = $this->getNext($id);
-        $relevant = $model->getRele($data['cat_3']);
-        foreach($relevant as $k=>$v){
-            if($id == $relevant[$k]['id']){
-                unset($relevant[$k]);
-            }
-        }
-        $data = [
-            "pre" => $pre?: null,
-            "current" => $data?: null,
-            "next" => $next?: null,
-            "relevant"=>$relevant ? :null,
-        ];
-        view('info/info',[
-            "data"=>$data
-        ]);
+        view("html/blogs/{$id}");
     }
     // 如果下一条没有 就往上一直拿
     public function getNext($id){
