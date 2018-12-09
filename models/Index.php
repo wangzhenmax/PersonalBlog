@@ -22,7 +22,7 @@ class   Index extends Base
     }
     // 简版主页
     public function getAllBlog(){
-        return $data = $this->getAll("SELECT id, created_at ,title from $this->table where is_show = 1 order by created_at desc");
+        return $data = $this->getAll("SELECT id, update_at ,title from $this->table where is_show = 1 order by created_at desc");
     }
     // 获取分类
     public function getType($id){
