@@ -11,7 +11,7 @@
     <ul id="list" style="display:none;">
       <?php foreach($data as $v):?>
       <li>
-        <span><?=substr($v['created_at'],0,10)?></span>
+        <span><?=substr($v['update_at'],0,10)?></span>
         <a href="/index/info?id=<?=$v['id']?>" title="帝国cms 首页或者列表页 实现图文不同样式调用方法"><?=$v['title']?></a>
       </li>
       <?php endforeach;?>
