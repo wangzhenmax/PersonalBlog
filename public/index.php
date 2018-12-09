@@ -55,8 +55,8 @@ else
 }
 //为控制器添加命名空间
 $fullController = 'controllers\\'.$controller;
-$_C = new $fullController;
-$_C->$action();
+@$_C = new $fullController;
+@$_C->$action();
 
 // 加载视图
 // 参数一、加载的视图的文件名
