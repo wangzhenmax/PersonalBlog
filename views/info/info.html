@@ -91,18 +91,18 @@
         </div>
       </div>
       <div class="nextinfo">
-        <p>上一篇：
+        <p>下一篇：
           <?php if($data['pre']['title']!=null):?>
           <a href="/index/info?id=<?=$data['pre']['id']?>"><?=$data['pre']['title']?></a>
           <?php else:?>
-          <a href="/">到头了,去首页看看吧?</a>
+          <a href="/">到底了,去首页看看吧?</a>
           <?php endif ;?>
         </>
-        <p>下一篇：
+        <p>上一篇：
           <?php if($data['next']['title']!=null):?>
          <a href="/index/info?id=<?=$data['next']['id']?>"><?=$data['next']['title']?></a>
           <?php else:?>
-            <a href="/">到底了,去首页看看吧?</a>
+            <a href="/">到头了,去首页看看吧?</a>
           <?php endif;?>
           
         </p>
