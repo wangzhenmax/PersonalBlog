@@ -139,13 +139,13 @@ class IndexController {
         $model = new \models\Admin;
         $emails = $_POST['emails'];
         $password = $_POST['password'];
-        if(isset($_SESSION[$emails])){
-            if($_SESSION[$emails]>=3){
-                die("你已经错了三次了");
-            }
-        }else{
-            $_SESSION[$emails] = 0;
-        }
+        // if(isset($_SESSION[$emails])){
+        //     if($_SESSION[$emails]>=3){
+        //         die("你已经错了三次了");
+        //     }
+        // }else{
+        //     $_SESSION[$emails] = 0;
+        // }
         $user = $model->find($emails,$password);
         if(!$user){
             $_SESSION[$emails]++;
