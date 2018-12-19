@@ -10,7 +10,7 @@ class IndexController {
     }
     public function getLike(){
         $model = new Index;
-        $like = $model->getLike(110);
+        $like = $model->getLike($_GET['id']);
         echo json_encode($like);
     }
     public function index(){
