@@ -8,7 +8,11 @@ class IndexController {
          $id = $_GET['id'];
          var_dump($model->ajaxZan($id));
     }
-
+    public function getLike(){
+        $model = new Index;
+        $like = $model->getLike(110);
+        echo json_encode($like);
+    }
     public function index(){
       view("html/index");
     }

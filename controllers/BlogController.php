@@ -124,7 +124,9 @@ class BlogController extends BaseController{
     {
         $model = new Index;
         $arr = $model->getAllBlogHtml();
-        mkdir(ROOT."views/html/blogs",777,true);
+        if(!is_dir(ROOT."views/html/blogs")){
+            mkdir(ROOT."views/html/blogs",777,true);
+        }
         foreach($arr as $v){
             $id = $v['id'];
             $data = $model->getBlog($id);
@@ -145,12 +147,13 @@ class BlogController extends BaseController{
                 "next" => $next?: null,
                 "relevant"=>$relevant ? :null,
             ];
-            ob_start();
+            // ob_start();
             view('info/info',[
                 "data"=>$data
             ]);
-            $str = ob_get_contents();
-            file_put_contents(ROOT."views/html/blogs/{$id}.html",$str);
+            // $str = ob_get_contents();
+            // file_put_contents(ROOT."views/html/blogs/{$id}.html",$str);
+            die;
         }
         
     }

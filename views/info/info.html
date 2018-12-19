@@ -37,7 +37,7 @@
       </div>
       <div class="share">
         <p  class="diggit" onclick="zan()"  style="width:100px;cursor:pointer">
-          <a>喜欢</a>(<b id="diggnum"><?=$data['current']['likes']?></b>)</p>
+          <a>喜欢</a>(<b id="diggnum"></b>)</p>
         <p class="dasbox">
           <a href="javascript:void(0)" onClick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏本站</a>
         </p>
@@ -138,6 +138,17 @@
   <a href="#" class="cd-top">Top</a>
 </body>
 <script>
+  var id ="<?= $data['current']['id'] ;?>";
+    $.ajax({
+        type:"GET",
+        url:"/index/getLike?id="+id,
+        success:function(res){
+          res = JSON.parse(res)
+            $("#diggnum").text(res[0].likes)
+        }
+    })
+</script>
+<script>
   !function () {
     function o(w, v, i) {
       return w.getAttribute(v) || i    
@@ -219,4 +230,5 @@ x = w[v]; if (i !== x && null !== x.x && null !== x.y) {
       });
     });
 </script>
+
 </html>

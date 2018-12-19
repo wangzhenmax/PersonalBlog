@@ -71,4 +71,8 @@ class   Index extends Base
     public function getAllBlogHtml(){
         return $data = $this->getAll("SELECT id from  $this->table where is_show = 1 order by id desc");
     }
+    // 获取文章赞
+    public function getLike($id){
+        return $data = $this->getAll("SELECT likes FROM $this->table where id = {$id} AND is_show = 1");
+    }
 }
