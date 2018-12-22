@@ -31,6 +31,7 @@ $token = $auth->uploadToken($bucketName, null, $expire);
 // 循环监听一个列表
 while(true)
 {
+    echo "监听中.....";
     // 从队列中取数据，设置为永久不超时（如果队列里面是空的，就一直阻塞在这）
     $rawdata = $client->brpop('jxshop:niqui', 0);
     // 处理数据
