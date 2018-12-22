@@ -18,7 +18,7 @@ ini_set('default_socket_timeout', -1);
 // 上传七牛云
 $accessKey = '9lArYEr8OIdogQJYJvCw_eUd_H-JiugM_ukcocM7';
 $secretKey = 'rFmjEXGlbhoPQc938uyCezxuW9wFC1zpHI6VqE5Q';
-$domain = '//piw5pz4ha.bkt.clouddn.com';
+$domain = '//www.nbplus.wang';
 // 配置参数
 $bucketName = 'vue-shop';   // 创建的 bucket(新建的存储空间的名字)
 
