@@ -18,7 +18,8 @@ ini_set('default_socket_timeout', -1);
 // 上传七牛云
 $accessKey = '9lArYEr8OIdogQJYJvCw_eUd_H-JiugM_ukcocM7';
 $secretKey = 'rFmjEXGlbhoPQc938uyCezxuW9wFC1zpHI6VqE5Q';
-$domain = '//www.nbplus.wang';
+$domain = '//cdn.www.nbplus.wang';
+$domains = '//cdn.nbplus.wang';
 // 配置参数
 $bucketName = 'vue-shop';   // 创建的 bucket(新建的存储空间的名字)
 
@@ -38,6 +39,7 @@ while(true)
     $data = unserialize($rawdata[1]); // 转成数组
     // 如果只上传一张图片
     if($data['cover_big']){
+        echo " 上传了一张图片 | ";
         // 获取文件名
         $name = ltrim(strrchr($data['cover_big'], '/'), '/');
         // 上传的文件
@@ -49,7 +51,7 @@ while(true)
             $client->lpush('jxshop:niqui', $rawdata[1]); 
         } else {
             // 更新数据库
-            $new = $domain.'/'.$ret['key'];
+            $new = $domains.'/'.$ret['key'];
             $sql = "UPDATE blog SET cover_big='{$new}' WHERE id=".$data['id'];
             $pdo->exec($sql);
             // 删除本地文件
@@ -60,6 +62,8 @@ while(true)
     // 如果上传多张图片
     else
     {
+        echo " 上传了三张图片 | ";
+        
         $cover_md = json_decode($data['cover_md']);
         $coverMd = [];
         foreach($cover_md as $v){
@@ -73,16 +77,19 @@ while(true)
                 // 如果失败，重新将数据放回队列
                 $client->lpush('jxshop:niqui', $rawdata[1]);            
             } else {
-                $new = $domain.'/'.$ret['key'];
+                $new = $domains.'/'.$ret['key'];
                 $coverMd[] = $new;
                 @unlink($file);
-                echo 'ok';
             }
         }
          // 更新数据库
         $cover = json_encode($coverMd);
         $sql = "UPDATE blog SET cover_md='{$cover}' WHERE id=".$data['id'];
-        $pdo->exec($sql);
-        // 删除本地文件
+        $d = $pdo->exec($sql);
+        if($d){
+            echo "ok";
+        }else{
+            echo "不Ok";
+        }
     }
 }
