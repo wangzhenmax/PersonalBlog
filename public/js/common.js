@@ -37,12 +37,6 @@
     /*mnav dl open*/
     var oH2 = document.getElementsByTagName('h2')[0];
     var oUl = document.getElementsByTagName('dl')[0];
-    // oH2.onclick = function () {
-    //     var style = oUl.style;
-    //     style.display = style.display == 'block' ? 'none' : 'block';
-    //     oH2.className = style.display == 'block' ? 'open' : '';
-    // };
-    //菜单点击效果
     $('.list_dt').on('click', function () {
         $('.list_dd').stop();
         $(this).siblings('dt').removeAttr('id');
