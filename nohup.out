@@ -1,21 +1,25 @@
-监听中.....监听中.....监听中.....ok监听中.....ok监听中.....okokok
-Warning: Error while sending QUERY packet. PID=722 in /var/www/libs/qiniu.php on line 85
-监听中.....
-Warning: Error while sending QUERY packet. PID=729 in /var/www/libs/qiniu.php on line 54
-ok监听中.....
-Warning: fopen(/var/www/libs/../public/uploads/covers/cover_sm/20181224/2e0efcd7665ef824c0e3f0f3243f9c1b.jpg): failed to open stream: No such file or directory in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 91
+
+ 上传了一张图片 | ok监听中..... 上传了一张图片 | ok监听中..... 上传了一张图片 | ok监听中..... 上传了一张图片 | ok监听中..... 上传了一张图片 | ok监听中..... 上传了一张图片 | ok监听中..... 上传了一张图片 | 
+Warning: fopen(/var/www/libs/../public/uploads/covers/cover_big/20190108/8be79ef282b0db2e444c5c359677cff0.jpg): failed to open stream: No such file or directory in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 91
 
 Fatal error: Uncaught Exception: file can not open in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php:93
 Stack trace:
-#0 /var/www/libs/qiniu.php(70): Qiniu\Storage\UploadManager->putFile('9lArYEr8OIdogQJ...', '2e0efcd7665ef82...', '/var/www/libs/....')
+#0 /var/www/libs/qiniu.php(47): Qiniu\Storage\UploadManager->putFile('9lArYEr8OIdogQJ...', '8be79ef282b0db2...', '/var/www/libs/....')
 #1 {main}
   thrown in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 93
-
-Warning: fopen(/var/www/libs/../public/uploads/covers/cover_big/20181224/90631e199030ecdb7c9a81b1fb654bcb.jpg): failed to open stream: No such file or directory in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 91
+监听中..... 上传了一张图片 | 
+Warning: fopen(/var/www/libs/../public/uploads/covers/cover_big/20190108/0771de0a11c9270281e07fde403fc581.jpg): failed to open stream: No such file or directory in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 91
 
 Fatal error: Uncaught Exception: file can not open in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php:93
 Stack trace:
-#0 /var/www/libs/qiniu.php(45): Qiniu\Storage\UploadManager->putFile('9lArYEr8OIdogQJ...', '90631e199030ecd...', '/var/www/libs/....')
+#0 /var/www/libs/qiniu.php(47): Qiniu\Storage\UploadManager->putFile('9lArYEr8OIdogQJ...', '0771de0a11c9270...', '/var/www/libs/....')
 #1 {main}
   thrown in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 93
-监听中.....ok监听中.....okokok监听中.....okokok监听中.....okokok监听中.....监听中..... 上传了三张图片 | ok监听中..... 上传了三张图片 | ok监听中.....
+监听中..... 上传了一张图片 | 
+Warning: fopen(/var/www/libs/../public/uploads/covers/cover_big/20190108/f46212b0184b928ebfa56ad6b2c6b1d4.jpg): failed to open stream: No such file or directory in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 91
+
+Fatal error: Uncaught Exception: file can not open in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php:93
+Stack trace:
+#0 /var/www/libs/qiniu.php(47): Qiniu\Storage\UploadManager->putFile('9lArYEr8OIdogQJ...', 'f46212b0184b928...', '/var/www/libs/....')
+#1 {main}
+  thrown in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 93
