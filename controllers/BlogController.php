@@ -46,7 +46,7 @@ class BlogController extends BaseController{
         if($data){
             redirect('/blog/index');
         }else{
-            echo "失败!";
+            echo "失败";
         }
     }
     // 显示修改的表单

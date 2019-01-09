@@ -52,6 +52,7 @@ use PDO;
 
     public function insert($id = 0)
     {
+        try{
         $this->_before_write();
         $keys=[];
         $values=[];
@@ -71,10 +72,14 @@ use PDO;
         $token = implode(',', $token);   // ?,?,?,?
         $sql = "INSERT INTO {$this->table}($keys) VALUES($token)";
         $stmt = $this->_db->prepare($sql);
-        $stmt->execute($values);
+        $a =$stmt->execute($values);
         $this->data['id'] = $this->_db->lastInsertId();
         $this->_after_write();
         return  $this->data['id'];
+        }catch (Exception $e) {
+             return $e->getMessage();die;
+        }
+   
     }
      // 接收表单中的数据
     public function fill($data)
