@@ -23,3 +23,4 @@ Stack trace:
 #0 /var/www/libs/qiniu.php(47): Qiniu\Storage\UploadManager->putFile('9lArYEr8OIdogQJ...', 'f46212b0184b928...', '/var/www/libs/....')
 #1 {main}
   thrown in /var/www/vendor/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php on line 93
+监听中.....
