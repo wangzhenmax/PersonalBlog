@@ -86,12 +86,12 @@ class BlogController extends BaseController{
 
 
     public function indexHtml(){
-        // $this->indexJianHtml();
-        // $this->sidebarHtml();
-        // $this->webHtml();
-        // $this->phpHtml();
-        // $this->qitaHtml();
-        // $this->contentHtml();
+        $this->indexJianHtml();
+        $this->sidebarHtml();
+        $this->webHtml();
+        $this->phpHtml();
+        $this->qitaHtml();
+        $this->contentHtml();
         $model = new Index;
         $data = $model->blogAll();
         $banner = $model->getBanner();
