@@ -127,10 +127,11 @@ class BlogController extends BaseController{
         mkdir(ROOT."views/html/blogs",777,true);
         foreach($arr as $v){
             if(file_exists(ROOT."views/html/blogs/".$v['id'].".html")){
-                echo $v['id'].",";
+                
             }else
             {
                 $id = $v['id'];
+                $id = 150;
                 $data = $model->getBlog($id);
                 $add = $model->addLook($id);
                 if(!$data)
@@ -149,6 +150,7 @@ class BlogController extends BaseController{
                     "next" => $next?: null,
                     "relevant"=>$relevant ? :null,
                 ];
+                var_dump($data);die;
                 ob_start();
                 view('info/info',[
                     "data"=>$data
