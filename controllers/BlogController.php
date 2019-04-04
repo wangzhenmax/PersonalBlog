@@ -125,10 +125,10 @@ class BlogController extends BaseController{
         $arr = $model->getAllBlogHtml();
         mkdir(ROOT."views/html/blogs",777,true);
         foreach($arr as $v){
-            if(file_exists(ROOT."views/html/blogs/".$v['id'].".html")){
+            // if(file_exists(ROOT."views/html/blogs/".$v['id'].".html")){
                 
-            }else
-            {
+            // }else
+            // {
                 $id = $v['id'];
                 $id = 150;
                 $data = $model->getBlog($id);
@@ -155,7 +155,7 @@ class BlogController extends BaseController{
                 ]);
                 $str = ob_get_contents();
                 file_put_contents(ROOT."views/html/blogs/{$id}.html",$str);
-            }
+            // }
            
         }
         
