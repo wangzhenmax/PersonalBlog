@@ -130,7 +130,6 @@ class BlogController extends BaseController{
             // }else
             // {
                 $id = $v['id'];
-                $id = 150;
                 $data = $model->getBlog($id);
                 $add = $model->addLook($id);
                 if(!$data)
