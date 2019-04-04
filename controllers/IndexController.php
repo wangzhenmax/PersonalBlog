@@ -22,7 +22,7 @@ class IndexController {
         $id = $_GET['id'];
         view("html/blogs/{$id}");
     }
-    // 如果下一条没有 就往上一直拿
+    // 如果下一条没有 就往下一直拿
     public function getNext($id){
         $model = new Index;
         if($model->getLastOne() > $id )

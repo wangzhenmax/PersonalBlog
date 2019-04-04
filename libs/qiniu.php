@@ -79,7 +79,6 @@ while(true)
             } else {
                 $new = $domains.'/'.$ret['key'];
                 $coverMd[] = $new;
-                @unlink($file);
             }
         }
          // 更新数据库

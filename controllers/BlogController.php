@@ -101,11 +101,8 @@ class BlogController extends BaseController{
                 if($v['cover_md']!=''){
                      $data[$k]['cover_md'] = json_decode($v['cover_md']);
                 }else{
-                $num = floor(rand(0,1));
-                    if($num==1){
                         $img = $this->getImgs($v['content'],0);
                         $data[$k]['blog_img'] = $img;
-                    }
                 }
             }
         }
