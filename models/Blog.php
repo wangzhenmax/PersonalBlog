@@ -28,7 +28,7 @@ class Blog extends Base
                     $path = $uploader->upload('tmp','covers/cover_sm');
                     $paths[] = "/uploads/".$path;
                     $path = ROOT.'public/uploads/'.$path;
-                    $this->covers_md($path);
+                    // $this->covers_md($path);
                 }
             }
             $data = json_encode($paths);
@@ -45,7 +45,7 @@ class Blog extends Base
                             $tmp['size'] = $_FILES['covers']['size'][$k];
                             $_FILES['tmp'] = $tmp;
                             $path = $uploader->upload('tmp','covers/cover_big');
-                            $this->covers_big(ROOT.'public/uploads/'.$path);
+                            // $this->covers_big(ROOT.'public/uploads/'.$path);
                             $this->data['cover_big'] = "/uploads/".$path;
                         }
                     }
