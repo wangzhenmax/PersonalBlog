@@ -55,7 +55,6 @@ while(true)
             $sql = "UPDATE blog SET cover_big='{$new}' WHERE id=".$data['id'];
             $pdo->exec($sql);
             // 删除本地文件
-            @unlink($file);
             echo 'ok';
         }
     }
