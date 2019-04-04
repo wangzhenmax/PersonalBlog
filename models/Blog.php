@@ -18,8 +18,7 @@ class Blog extends Base
             $paths = [];
                 foreach($_FILES['covers']['name'] as $k => $v){
                 if($_FILES['covers']['error'][$k]==0){
-                    $this->_delete_img();
-
+                    // $this->_delete_img();
                     $tmp['name'] = $v;
                     $tmp['type'] = $_FILES['covers']['type'][$k];
                     $tmp['tmp_name'] = $_FILES['covers']['tmp_name'][$k];
@@ -38,7 +37,7 @@ class Blog extends Base
             else{
                     foreach($_FILES['covers']['name'] as $k => $v){
                         if($_FILES['covers']['error'][$k]==0){
-                            $this->_delete_img();
+                            // $this->_delete_img();
                             $tmp['name'] = $v;
                             $tmp['type'] = $_FILES['covers']['type'][$k];
                             $tmp['tmp_name'] = $_FILES['covers']['tmp_name'][$k];
