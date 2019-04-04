@@ -51,7 +51,7 @@
     <!--blogsbox begin-->
     <div class="blogsbox">
       <?php foreach($data as $v){;?>
-      <?php if(isset($v['blog_img'])&& $v['blog_img'] != null){; ?>
+      <?php if($v['blog_img'] != null){; ?>
             <div class="blogs" data-scroll-reveal="enter bottom over 1s">
               <h3 class="blogtitle">
                 <a href="/index/info?id=<?=$v['id']?>" target="_blank">

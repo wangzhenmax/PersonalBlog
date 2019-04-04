@@ -103,9 +103,11 @@ class BlogController extends BaseController{
                 }else{
                         $img = $this->getImgs($v['content'],0);
                         $data[$k]['blog_img'] = $img;
+                        // var_dump($data[$k]);
                 }
             }
         }
+        // die;
         ob_start();
         view("index.index",[
             'data'=>$data,
@@ -147,7 +149,6 @@ class BlogController extends BaseController{
                     "next" => $next?: null,
                     "relevant"=>$relevant ? :null,
                 ];
-                var_dump($data);die;
                 ob_start();
                 view('info/info',[
                     "data"=>$data
