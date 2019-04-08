@@ -117,7 +117,38 @@ class BlogController extends BaseController{
         file_put_contents(ROOT.'views/html/index.html',$str);
         redirect('/');
     }
-
+    // 单个文章静态化 
+    public function oneHtml()
+        {
+            $model = new Index;
+                    $id = $_GET['id'];
+                    $data = $model->getBlog($id);
+                    $add = $model->addLook($id);
+                    if(!$data)
+                        return false;
+                    $pre =$this->getPre($id);
+                    $next = $this->getNext($id);
+                    $relevant = $model->getRele($data['cat_3']);
+                    foreach($relevant as $k=>$v){
+                        if($id == $relevant[$k]['id']){
+                            unset($relevant[$k]);
+                        }
+                    }
+                    $data = [
+                        "pre" => $pre?: null,
+                        "current" => $data?: null,
+                        "next" => $next?: null,
+                        "relevant"=>$relevant ? :null,
+                    ];
+                    ob_start();
+                    view('info/info',[
+                        "data"=>$data
+                    ]);
+                    $str = ob_get_contents();
+                    file_put_contents(ROOT."views/html/blogs/{$id}.html",$str);
+            
+            
+        }
     // 所有文章静态化
      public function contentHtml()
     {
