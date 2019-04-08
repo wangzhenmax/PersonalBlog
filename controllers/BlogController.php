@@ -117,15 +117,13 @@ class BlogController extends BaseController{
         redirect('/');
     }
     // 单个文章静态化 
-    public function oneHtml()
+    public function one()
         {
             $model = new Index;
             $id = $_GET['id'];
-            if(file_exists(ROOT."views/html/blogs/".$v['id'].".html")){
-                unlink(ROOT."views/html/blogs/".$v['id'].".html");
-                echo "已删除旧版本";
+            if(file_exists(ROOT."views/html/blogs/".$id.".html")){
+                unlink(ROOT."views/html/blogs/".$id.".html");
             }
-            echo "新版本已生成";
                     $data = $model->getBlog($id);
                     $add = $model->addLook($id);
                     if(!$data)
