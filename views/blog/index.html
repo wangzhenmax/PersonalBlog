@@ -75,8 +75,9 @@
                     <a href="?<?=getUrlParams(['odby','odway'])?>odby=data&odway=desc">☟</a>
                 </th>
                 <th>
+                    操作
                 </th>
-                <th>操作</th>
+                <th>静态化</th>
             </tr>
             <?php foreach($data as $v): ?>
             <tr>
@@ -120,6 +121,9 @@
                 <td>
                     <a href="/blog/edit?id=<?=$v['id']?>">修改</a>
                     <a onclick="return confirm('确定要删除吗？');" href="/blog/delete?id=<?=$v['id']?>">删除</a>
+                </td>
+                <td>
+                    <a href="/blog/one?id=<?=$v['id']?>">静态化</a>
                 </td>
             </tr>
             <?php endforeach; ?>
