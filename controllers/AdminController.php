@@ -3,6 +3,7 @@ namespace controllers;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use models\Admin;
+use models\Index;
 class AdminController  extends BaseController{
 
 
@@ -78,8 +79,20 @@ class AdminController  extends BaseController{
    
     // 显示主页
     public function index(){
-             view("admin/index");
+        $model = new Index;
+        $data['lookNum'] = $this->getLook();
+        $data['lookUser'] = $model->ipNum();
+        // var_dump($data);    
+        view("admin/index",[
+              'data'=>$data
+        ]);
     }
+    // 访问次数
+   public function getLook(){
+       $model = new Index;
+       $num = $model->IndexLookNum();
+       return $num;    
+   }
     // public function register()
     // {
     //     view('admin/register');

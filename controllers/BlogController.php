@@ -85,7 +85,7 @@ class BlogController extends BaseController{
     }
 
 
-    public function gotoHtml(){
+    public function HTML(){
         $this->indexJianHtml();
         $this->sidebarHtml();
         $this->webHtml();
@@ -231,7 +231,7 @@ class BlogController extends BaseController{
         $str = ob_get_contents();
         file_put_contents(ROOT.'views/html/indexJian.html',$str);
     }
-      public function sidebarHtml(){
+    public function sidebarHtml(){
         $model = new Index;
         $recom = $model->getRecom();
         $top = $model->getTop();
@@ -249,7 +249,7 @@ class BlogController extends BaseController{
         file_put_contents(ROOT."views/comment/sidebarHtml.html",$str);
     }
      //  获取前端的文章
-     public function webHtml(){
+    public function webHtml(){
          $model = new Index;
          $data = $model->getTypeWeb();
          foreach($data as $k=> $v){
@@ -333,8 +333,7 @@ class BlogController extends BaseController{
     }
       // 获取内容中的图片做封面
       // <p><img src="/ueditor/php/upload/image/20181019/1539918581167759.png" title="1539918581167759.png" alt="image.png"/></p><p>上面是一张截图</p>
-    public function getImgs($content,$order='ALL')
-    {  
+    public function getImgs($content,$order='ALL'){  
     $pattern="/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg|\.png]))[\'|\"].*?[\/]?>/"; 
       preg_match($pattern,$content,$match);  
       return $match[1]; 
@@ -348,5 +347,5 @@ class BlogController extends BaseController{
     preg_match_all($pattern,$matches[1][0], $matches1);
     return $matches1[1];
     }
-   
+
 }

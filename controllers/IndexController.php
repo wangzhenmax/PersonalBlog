@@ -1,6 +1,7 @@
 <?php
 namespace controllers;
 use models\Index;
+use models\Blog;
 class IndexController {
     // ajax 点赞
     public function ajaxZan(){
@@ -14,7 +15,9 @@ class IndexController {
         echo json_encode($like);
     }
     public function index(){
-      view("html/index");
+        $this->user_ip();
+        $this->addLook();
+        view("html/index");
     }
     // 详情页
      public function info()
@@ -159,4 +162,33 @@ class IndexController {
             redirect("/admin/index");
         }
     }
+    // 用户ip
+    public function user_ip(){
+      if(!empty($_SERVER["HTTP_CLIENT_IP"])){
+        $cip = $_SERVER["HTTP_CLIENT_IP"];
+        }
+        elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
+        $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        }
+        elseif(!empty($_SERVER["REMOTE_ADDR"])){
+        $cip = $_SERVER["REMOTE_ADDR"];
+        }
+        else{
+        $cip = "无法获取！";
+        }
+        if($cip!="无法获取"){
+            $model = new Index;
+            $data = $model->hasIp($cip);    
+            if(!$data){
+                $res = $model->addIp($cip);
+            }
+        }else{
+            echo "无法获取";
+        }
+   }
+   
+   public function addLook(){
+       $model = new Index;
+       $model->addIndexLookNum();    
+   }
 }

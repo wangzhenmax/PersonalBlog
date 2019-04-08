@@ -75,4 +75,24 @@ class   Index extends Base
     public function getLike($id){
         return $data = $this->getAll("SELECT likes FROM $this->table where id = {$id} AND is_show = 1");
     }
+    // 判断是否来访过
+    public function hasIp($ip){
+         return $data = $this->getAll("SELECT ip FROM user_ip where ip like '{$ip}' limit 1");
+    }
+    // 记录Ip地址
+    public function addIp($cip){
+        $data = $this->_db->prepare("INSERT INTO  user_ip VALUE('{$cip}')"); return $data->execute();
+    }
+    // 返回IP数量
+    public function ipNum(){
+        return $data = $this->getAll("SELECT COUNT(*) as num FROM user_ip");
+    }
+    // 网站访问量 
+    public function IndexLookNum(){
+        return $data = $this->getAll("SELECT num FROM look_num");
+    }
+    // 增加访问量
+    public function addIndexLookNum(){
+        $data = $this->_db->prepare("UPDATE look_num set num =  num + 1"); return $data->execute();
+    }
 }
