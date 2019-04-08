@@ -91,7 +91,6 @@ class BlogController extends BaseController{
         $this->webHtml();
         $this->phpHtml();
         $this->qitaHtml();
-        $this->contentHtml();
         $model = new Index;
         $data = $model->blogAll();
         $banner = $model->getBanner();
