@@ -121,7 +121,12 @@ class BlogController extends BaseController{
     public function oneHtml()
         {
             $model = new Index;
-                    $id = $_GET['id'];
+            $id = $_GET['id'];
+            if(file_exists(ROOT."views/html/blogs/".$v['id'].".html")){
+                unlink(ROOT."views/html/blogs/".$v['id'].".html");
+                echo "已删除旧版本";
+            }
+            echo "新版本已生成";
                     $data = $model->getBlog($id);
                     $add = $model->addLook($id);
                     if(!$data)
@@ -146,8 +151,6 @@ class BlogController extends BaseController{
                     ]);
                     $str = ob_get_contents();
                     file_put_contents(ROOT."views/html/blogs/{$id}.html",$str);
-            
-            
         }
     // 所有文章静态化
      public function contentHtml()
