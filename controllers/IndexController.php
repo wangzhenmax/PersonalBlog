@@ -178,12 +178,12 @@ class IndexController {
         }
         if($cip!="无法获取"){
             $model = new Index;
-            $data = $model->hasIp($cip);    
+            $data = $model->hasIp($cip); 
             if(!$data){
                 $res = $model->addIp($cip);
             }
         }else{
-            echo "无法获取";
+            // echo "无法获取";
         }
    }
    
