@@ -9,6 +9,36 @@ class Blog extends Base
     // 设置允许接收的字段
     protected $fillable = ['title','type','introduce','content',"user_id","cat_1","cat_2","cat_3","is_show","banner","recommend"];
 
+    // 创建文章
+    public function blogInsert($id){
+    $stmt= new \PDO("mysql:host=118.89.221.52;dbname=blog",'root','123456');
+    //, $_POST['cat_1'],$_POST['cat_2'],$_POST['cat_3'],$_POST['introduce'],$_POST['is_show'],$_POST['banner'],$_POST['recommend'], $_POST['content']
+    $values[] = $id;
+    $title = $_POST['title'];
+    $cat_1 = $_POST['cat_1'];
+    $cat_2 = $_POST['cat_2'];
+    $cat_3 = $_POST['cat_3'];
+    $introduce = $_POST['introduce'];
+    $is_show = $_POST['is_show'];
+    $banner = $_POST['banner'];
+    $recommend = $_POST['recommend'];
+    $content = $_POST['content'];
+    $sql = "insert INTO {$this->table} (user_id,title,cat_1,cat_2,cat_3,introduce, is_show,banner,recommend,content) values(
+        $id,
+        '{$title}',
+        $cat_1,
+        $cat_2,
+        $cat_3,
+        '{$introduce}',
+        $is_show,
+        $banner,
+        $recommend,
+        '{$content}'
+        )";
+    $data = $stmt->exec($sql);
+    echo $sql;
+    var_dump($data);die;
+    }
     // 插入 / 修改前 
     public function _before_write(){
         $uploader = \libs\Uploader::make();

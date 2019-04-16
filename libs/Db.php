@@ -6,8 +6,8 @@ class Db
     private  $pdo;
     private function __clone(){}
     private function __construct(){
-        $this->pdo= new \PDO("mysql:host=118.89.221.52;dbname=blog",'root','wang457340');
-        // $this->pdo= new \PDO("mysql:host=127.0.0.1;dbname=personalblog",'root','123456');
+        // $this->pdo= new \PDO("mysql:host=118.89.221.52;dbname=blog",'root','wang457340');
+        $this->pdo= new \PDO("mysql:host=127.0.0.1;dbname=blog",'root','123456');
         $this->pdo->exec("SET NAMES utf8");
     }
     public static function getDb(){

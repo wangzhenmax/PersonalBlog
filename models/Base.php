@@ -70,7 +70,9 @@ use PDO;
         }
         $keys = implode(',', $keys);
         $token = implode(',', $token);   // ?,?,?,?
-        $sql = "INSERT INTO {$this->table}($keys) VALUES($token)";
+        $val =  implode(',', $values[8]); 
+        $val =   $values[8]; 
+        $sql = "INSERT INTO {$this->table}($keys) VALUES($val)";
         $stmt = $this->_db->prepare($sql);
         $a =$stmt->execute($values);
         $this->data['id'] = $this->_db->lastInsertId();

@@ -43,6 +43,7 @@ class BlogController extends BaseController{
         $model->fill($_POST);
         $id = $_SESSION['id'];
         $data = $model->insert($id);
+        // $data = $model->blogInsert($id); 
         if($data){
             redirect('/blog/index');
         }else{
