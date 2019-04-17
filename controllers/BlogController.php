@@ -167,7 +167,6 @@ class BlogController extends BaseController{
             // {
                 $id = $v['id'];
                 $data = $model->getBlog($id);
-                $add = $model->addLook($id);
                 if(!$data)
                     return false;
                 $pre =$this->getPre($id);
