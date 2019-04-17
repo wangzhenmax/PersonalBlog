@@ -23,6 +23,9 @@ class IndexController {
      public function info()
     {
         $id = $_GET['id'];
+        $model = new Index;
+        $model->addLook($id);
+
         view("html/blogs/{$id}");
     }
     // 如果下一条没有 就往下一直拿
