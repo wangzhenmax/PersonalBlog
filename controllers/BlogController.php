@@ -94,6 +94,9 @@ class BlogController extends BaseController{
         $this->qitaHtml();
         $this->indexHtml();
     }
+    public  function  head(){
+        view('comment/header');
+    }
     // 更新首页
     public function indexHtml(){
         $model = new Index;
@@ -107,7 +110,6 @@ class BlogController extends BaseController{
                 }else{
                         $img = $this->getImgs($v['content'],0);
                         $data[$k]['blog_img'] = $img;
-                        // var_dump($data[$k]);
                 }
             }
         }

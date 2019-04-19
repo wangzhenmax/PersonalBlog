@@ -36,6 +36,9 @@
 
 <body>
 <header>
+                    <p style="display:block;margin-top:50px;margin-right:50px;color:#666;font-size:12px;float:right;">PersonalBlog 已运行(
+                        <span class="ttt"></span>)</p>
+    
     <!--menu begin-->
     <div class="menu">
         <nav class="nav" id="topnav">
@@ -98,3 +101,61 @@
 
     <!--mnav end-->
 </header>
+<script>
+     var timestamp2 = Date.parse(new Date('2018-10-03'));
+        function time() {
+            var timestamp1 = Date.parse(new Date());
+            let time = (timestamp1 - timestamp2)
+            let timeNow = formatSeconds(time / 1000)
+        let span = document.querySelector(".ttt")
+        span.innerText = timeNow
+        }
+        setInterval("time()", 1000);
+        function formatSeconds(value) {
+            var secondTime = parseInt(value);// 秒
+            var minuteTime = 0;// 分
+            var hourTime = 0;// 小时
+            if (secondTime < 59) {
+                return result = secondTime + " 秒"
+            } else if (secondTime > 59) {
+                minuteTime = parseInt(secondTime / 60);
+                secondTime = parseInt(secondTime % 60);
+                hourTime = 0;
+                if (minuteTime > 59) {
+                    // h
+                    hourTime = parseInt(minuteTime / 60);
+                    // m
+                    minuteTime = parseInt(minuteTime % 60);
+                    // S
+                    secondTime = parseInt(secondTime % 60);
+                }
+            }
+            var result = "" + parseInt(secondTime) + " : ";
+            if (minuteTime > 0) {
+                result = parseInt(minuteTime) + " 分 " + secondTime + " 秒";
+            }
+            if (hourTime > 0) {
+                result = parseInt(hourTime) + " 时 " + minuteTime + " 分 " + secondTime + " 秒";
+                if (hourTime > 23) {
+                    day = parseInt(hourTime / 24);
+                    day = day < 10 ? "0" + day : day
+                    hourTime = parseInt(hourTime % 24);
+                    hourTime = hourTime < 10 ? "0" + hourTime : hourTime
+                    result = day + " 天 " + hourTime + " 时 " + minuteTime + " 分 " + secondTime + " 秒";
+                    if(day>30){
+                        let month = parseInt(day/30)
+                            day = parseInt(day % 30)
+                            day = day < 10 ? "0" + day : day
+                    result =" "+ month+" 月 "+ day + " 天 " + hourTime + " 时 " + minuteTime + " 分 " + secondTime + " 秒";
+                        if(month>12){
+                            let yar = parseInt(month/12)
+                                month = parseInt(month % 12)
+                        result = yar+" 年 "+ month + " 月 " + day + " 天 " + hourTime + " 时 " + minuteTime + " 分 " + secondTime + " 秒";
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+</script>
