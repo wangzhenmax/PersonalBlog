@@ -87,6 +87,13 @@ class AdminController  extends BaseController{
               'data'=>$data
         ]);
     }
+    // 返回总浏览量和用户人数
+    public function getLookNum(){
+        $model = new Index;
+        $data['lookNum'] = $this->getLook();
+        $data['lookUser'] = $model->ipNum();
+        echo json_encode($data);
+    }
     // 访问次数
    public function getLook(){
        $model = new Index;

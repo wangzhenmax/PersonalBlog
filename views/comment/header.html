@@ -36,6 +36,7 @@
 
 <body>
 <header>
+        <p style="display:block;margin-top:50px;margin-left:50px;color:#666;font-size:12px;float:left;">访问量:(<span class="userLook"></span>) | 访问人数:( <span class="userNum"></span> )</p>
                     <p style="display:block;margin-top:50px;margin-right:50px;color:#666;font-size:12px;float:right;">PersonalBlog 已运行(
                         <span class="ttt"></span>)</p>
     
@@ -102,6 +103,19 @@
     <!--mnav end-->
 </header>
 <script>
+    function getlooknum(){
+        $.ajax({
+            url: "/admin/getLookNum",
+            dataType: "json",
+            success: function (res) {
+                let look = document.querySelector(".userLook")
+                let user = document.querySelector(".userNum")
+                look.innerText = res.lookNum[0].num
+                user.innerText = res.lookUser[0].num
+            }
+        });
+    }
+    getlooknum()
      var timestamp2 = Date.parse(new Date('2018-10-03'));
         function time() {
             var timestamp1 = Date.parse(new Date());

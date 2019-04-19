@@ -349,5 +349,6 @@ class BlogController extends BaseController{
     preg_match_all($pattern,$matches[1][0], $matches1);
     return $matches1[1];
     }
+    
 
 }
