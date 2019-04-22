@@ -29,6 +29,7 @@ class IndexController {
         $time=date("Y-m-d H:i:s");
         $title = $model->infoTitle($id);
         $title = $title[0]['title'];
+        $cip = $this->get_ip();
         $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 文章标题为: “".$title."” ";
         $log = $model->addLog($str);
         view("html/blogs/{$id}");
@@ -172,18 +173,7 @@ class IndexController {
     }
     // 用户ip
     public function user_ip(){
-      if(!empty($_SERVER["HTTP_CLIENT_IP"])){
-        $cip = $_SERVER["HTTP_CLIENT_IP"];
-        }
-        elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
-        $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        }
-        elseif(!empty($_SERVER["REMOTE_ADDR"])){
-        $cip = $_SERVER["REMOTE_ADDR"];
-        }
-        else{
-        $cip = "无法获取";
-        }
+      $cip = $this->get_ip();
         if($cip!="无法获取"){
             $model = new Index;
             $data = $model->hasIp($cip); 
@@ -204,5 +194,21 @@ class IndexController {
    public function addLook(){
        $model = new Index;
        $model->addIndexLookNum();    
+   }
+   // 获取用户ip
+   public function get_ip(){
+       if(!empty($_SERVER["HTTP_CLIENT_IP"])){
+        $cip = $_SERVER["HTTP_CLIENT_IP"];
+        }
+        elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
+        $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        }
+        elseif(!empty($_SERVER["REMOTE_ADDR"])){
+        $cip = $_SERVER["REMOTE_ADDR"];
+        }
+        else{
+        $cip = "无法获取";
+        }
+        return $cip;
    }
 }
