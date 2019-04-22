@@ -22,6 +22,7 @@ use PDO;
      */
     public function __construct()
     {
+        date_default_timezone_set('PRC'); 
         $this->_db = \libs\Db::getDb();
     }
     /**
