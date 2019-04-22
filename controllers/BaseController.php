@@ -2,6 +2,7 @@
 namespace controllers;
 class BaseController { 
     public function __construct(){
+        date_default_timezone_set('PRC'); 
         if(!isset($_SESSION['email'])&&$_SESSION['email']!="457340@qq.com"){
             redirect("/index/login");
         }
