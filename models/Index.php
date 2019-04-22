@@ -81,7 +81,8 @@ class   Index extends Base
     }
     // 记录Ip地址
     public function addIp($cip){
-        $data = $this->_db->prepare("INSERT INTO  user_ip VALUES('{$cip}',null)"); return $data->execute();
+        $time=date("Y-m-d H:i:s");
+        $data = $this->_db->prepare( "INSERT INTO  user_ip VALUES(null,'{$cip}','{$time}')"); return $data->execute();
     }
     // 返回IP数量
     public function ipNum(){
@@ -94,5 +95,14 @@ class   Index extends Base
     // 增加访问量
     public function addIndexLookNum(){
         $data = $this->_db->prepare("UPDATE look_num set num =  num + 1"); return $data->execute();
+    }
+    // 用户访问日志
+    public function addLog($str){
+        $time=date("Y-m-d H:i:s");
+        $data = $this->_db->prepare( "INSERT INTO  user_log VALUES(null,'{$str}','{$time}')"); return $data->execute();
+    }
+    // 返回文章标题
+    public function infoTitle($id){
+        return $data = $this->getAll("SELECT title  FROM $this->table where id = {$id}");
     }
 }

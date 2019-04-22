@@ -25,6 +25,12 @@ class IndexController {
         $id = $_GET['id'];
         $model = new Index;
         $model->addLook($id);
+        // 记录用户访问日志
+        $time=date("Y-m-d H:i:s");
+        $title = $model->infoTitle($id);
+        $title = $title[0]['title'];
+        $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 文章标题为: “".$title."” ";
+        $log = $model->addLog($str);
         view("html/blogs/{$id}");
     }
     // 如果下一条没有 就往下一直拿
@@ -176,14 +182,20 @@ class IndexController {
         $cip = $_SERVER["REMOTE_ADDR"];
         }
         else{
-        $cip = "无法获取！";
+        $cip = "无法获取";
         }
         if($cip!="无法获取"){
             $model = new Index;
             $data = $model->hasIp($cip); 
+            if($log){
+                echo "log添加成功!";
+            }
             if(!$data){
                 $res = $model->addIp($cip);
             }
+            $time=date("Y-m-d H:i:s");
+            $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 “我的首页” ";
+            $log = $model->addLog($str);
         }else{
             // echo "无法获取";
         }
