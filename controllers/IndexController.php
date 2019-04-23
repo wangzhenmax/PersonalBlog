@@ -65,14 +65,25 @@ class IndexController {
     }
     // 前后端文章
     public function webPhp(){
+        $model = new Index;
+        $time=date("Y-m-d H:i:s");
          if(isset($_GET['type2'])){
             $cat_2 = $_GET['type2'];
            if($cat_2 == 2){
+                $cip = $this->get_ip();
+                $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 类别: “前端开发” ";
+                $log = $model->addLog($str);
                view("html/web");
            }else if($cat_2==16){
+                $cip = $this->get_ip();
+                $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 类别: “其他” ";
+                $log = $model->addLog($str);
                view("html/qita");
            }
            else{
+                $cip = $this->get_ip();
+                $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 类别: “后端开发” ";
+                $log = $model->addLog($str);
                view("html/php");
            }
         }
@@ -84,6 +95,7 @@ class IndexController {
         $data = [];
         // 如果是从分类过来的 取出分类文章
         if(isset($_GET['type3'])){
+            
             $cat_3 = $_GET['type3'];
             $data = $model->getCat_3($cat_3);
         }
@@ -129,6 +141,11 @@ class IndexController {
     // 时间轴
      public function time()
     {
+        $model = new Index;
+        $time=date("Y-m-d H:i:s");
+        $cip = $this->get_ip();
+        $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 : “时间轴” ";
+        $log = $model->addLog($str);
        view("html/indexJian");
     }
     // 类别
@@ -144,6 +161,11 @@ class IndexController {
     // 自我介绍
     public function about()
     {
+        $model = new Index;
+        $time=date("Y-m-d H:i:s");
+        $cip = $this->get_ip();
+        $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 : “关于我的” ";
+        $log = $model->addLog($str);
         view('about/about');
     }
      // 接收登录
