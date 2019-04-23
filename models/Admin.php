@@ -49,7 +49,6 @@ class Admin extends Base
             }
         }
         return $arr;
-
     }
     //插入数据
     public function find($emails,$password){
