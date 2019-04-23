@@ -236,7 +236,7 @@ class IndexController {
    // 返回总浏览量和用户人数
     public function getLookNum(){
         $model = new Index;
-        $data['lookNum'] = $this->getLook();
+        $data['lookNum'] = $model->IndexLookNum();
         $data['lookUser'] = $model->ipNum();
         echo json_encode($data);
     }
