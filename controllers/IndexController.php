@@ -3,6 +3,9 @@ namespace controllers;
 use models\Index;
 use models\Blog;
 class IndexController {
+    public function __construct(){
+        date_default_timezone_set('PRC'); 
+    }
     // ajax 点赞
     public function ajaxZan(){
          $model = new Index;
