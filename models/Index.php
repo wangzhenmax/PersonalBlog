@@ -81,7 +81,7 @@ class   Index extends Base
     }
     // 记录Ip地址
     public function addIp($cip,$time){
-        $data = $this->_db->prepare( "INSERT INTO  user_ip VALUES(null,'{$cip}',$time)"); return $data->execute();
+        $data = $this->_db->prepare( "INSERT INTO  user_ip VALUES(null,'{$cip}',{'$time'})"); return $data->execute();
     }
     // 返回IP数量
     public function ipNum(){
