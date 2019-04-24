@@ -195,6 +195,7 @@ class IndexController {
     }
     // 用户ip
     public function user_ip(){
+            $time=date("Y-m-d H:i:s");
       $cip = $this->get_ip();
         if($cip!="无法获取"){
             $model = new Index;
@@ -203,9 +204,8 @@ class IndexController {
                 echo "log添加成功!";
             }
             if(!$data){
-                $res = $model->addIp($cip);
+                $res = $model->addIp($cip,$time);
             }
-            $time=date("Y-m-d H:i:s");
             $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 “我的首页” ";
             $log = $model->addLog($str);
         }else{
