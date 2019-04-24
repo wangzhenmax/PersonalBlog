@@ -204,7 +204,7 @@ class IndexController {
                 echo "log添加成功!";
             }
             if(!$data){
-                $res = $model->addIp($cip,$time);
+                $res = $model->addIp($cip);
             }
             $str = "用户 “".$cip."”  在 “ ".$time." ”  访问了 “我的首页” ";
             $log = $model->addLog($str);

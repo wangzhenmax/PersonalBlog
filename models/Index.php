@@ -80,9 +80,9 @@ class   Index extends Base
          return $data = $this->getAll("SELECT ip FROM user_ip where ip like '{$ip}' limit 1");
     }
     // 记录Ip地址
-    public function addIp($cip,$time){
+    public function addIp($cip){
+        $time=date("Y-m-d H:i:s");
         $data = $this->_db->prepare( "INSERT INTO  user_ip VALUES(null,'{$cip}','{$time}')"); return $data->execute();
-        var_dump($data);die;
     }
     // 返回IP数量
     public function ipNum(){
