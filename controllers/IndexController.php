@@ -25,6 +25,8 @@ class IndexController {
     // 详情页
      public function info()
     {
+        $this->user_ip();
+        $this->addLook();
         $id = $_GET['id'];
         $model = new Index;
         $model->addLook($id);
