@@ -232,7 +232,18 @@ class Blog extends Base
             $btns .= "<a class='$class' href='?{$params}page=$i'> $i </a>";
         }
          $leftJoin = "  blog inner join type as type1 inner join type as type2 inner join type as type3 on type1.id = blog.cat_1 and type2.id = blog.cat_2 and type3.id = blog.cat_3 ";
-        $sql = "SELECT blog.* , type1.name as cat1, type2.name as cat2 , type3.name as cat3  FROM $leftJoin   WHERE $where group by blog.id  ORDER BY $odby $odway LIMIT $offset,$perpage";
+        $sql = "SELECT 
+        blog.id ,
+        blog.title ,
+        blog.cat_1 ,
+        blog.cat_2 ,
+        blog.cat_3 ,
+        blog.look ,
+        blog.likes ,
+        blog.recommend ,
+        blog.banner ,
+        blog.introduce ,
+        blog.created_at , type1.name as cat1, type2.name as cat2 , type3.name as cat3  FROM $leftJoin   WHERE $where group by blog.id  ORDER BY $odby $odway LIMIT $offset,$perpage";
         $stmt = $this->_db->prepare($sql);
         // 执行 SQL
         $stmt->execute($value);
